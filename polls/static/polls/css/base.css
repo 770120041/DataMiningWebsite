@@ -1,0 +1,14 @@
+body {
+  height: 2000px;
+}
+
+header {
+  position: fixed;
+  top: 0;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+}

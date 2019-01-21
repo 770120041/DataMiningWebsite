@@ -1,0 +1,16 @@
+{% extends 'polls/base.html' %}
+{% block title %} Project {% endblock %}
+{% block content %}
+
+    <ul class="sub_nav_bar">
+        <li class="nav_content"><a href="{% url 'polls:table1' %}">1-column_3C_weka</a></li>
+      <li class="nav_content"><a href="{% url 'polls:table2' %}">2-chinese-stock</a></li>
+      <li class="nav_content"><a href="{% url 'polls:table3' %}">3-Shanghai license plate price</a></li>
+      <li class="nav_content"><a href="{% url 'polls:table4' %}">4-happiness2017</a></li>
+    </ul>
+    {% block table %}
+        {% autoescape off %}
+             {{ table }}
+        {% endautoescape %}
+    {% endblock %}
+{% endblock %}
