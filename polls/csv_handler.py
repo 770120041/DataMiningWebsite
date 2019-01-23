@@ -6,7 +6,7 @@ def red_negative_color(val):
     return 'color:%s' %color
 
 
-def read_csv(path):
+def csv_to_html(path):
     df = pd.read_csv(path)
-
+    print (df.columns)
     return df.to_html
