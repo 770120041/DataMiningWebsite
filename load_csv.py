@@ -6,10 +6,10 @@ import pandas as pd
 
 
 CSV_PATH = {
-        "1": "polls\\data\\1_3cweka.csv",
-        "2": "polls\\data\\2_chinese_stock.csv",
-        "3": "polls\\data\\3_license_plate.csv",
-        "4": "polls\\data\\4_hapiness.csv"
+        "weka": "polls\\data\\1_3cweka.csv",
+        "chinese_stock": "polls\\data\\2_chinese_stock.csv",
+        "license_plate": "polls\\data\\3_license_plate.csv",
+        "hapiness": "polls\\data\\4_hapiness.csv"
     }
 
 for key in CSV_PATH.keys():

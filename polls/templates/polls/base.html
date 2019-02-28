@@ -7,22 +7,27 @@
         <link rel="stylesheet" type="text/css" href="{% static 'polls/css/table.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'polls/css/navbar.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'polls/css/base.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'polls/css/bootstrap.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'polls/css/bootstrap-reboot.css' %}">
 
+        <script src="{% static 'polls/js/bootstrap.js' %}"></script>
         <script src="{% static 'polls/js/jquery.min.js' %}"></script>
         <script src="{% static 'polls/js/chosen.jquery.min.js' %}"></script>
         <link href="{% static 'polls/css/chosen.min.css' %}" rel="stylesheet"/>
 
+        {#Title Here!!#}
         <title>{% block title %}Project {% endblock %}</title>
 
     </head>
     <body>
 
+        {#Top_level Nav_bar here!#}
         <ul class="nav_bar">
           <li class="nav_content"><a href="{% url 'polls:home' %}" class="active">Home</a></li>
           <li class="nav_content"><a href="{% url 'polls:about' %}">About</a></li>
         </ul>
 
-
+        {#Content Here!#}
         {% block content %}{% endblock %}
     </body>
 </html>

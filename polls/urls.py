@@ -6,21 +6,26 @@ from polls.views import TableView
 
 # name is used for a particular mapping(a line in urlpatterns)
 
-"""
-    TODO:
-        passing more variables to url function  
-        https://docs.djangoproject.com/en/1.11/topics/http/urls/#passing-extra-options-to-view-functions
-"""
+
+CSV_PATH = {
+        "cweka": "polls\\data\\1_3cweka.csv",
+        "chinese_stock": "polls\\data\\2_chinese_stock.csv",
+        "license_plate": "polls\\data\\3_license_plate.csv",
+        "hapiness": "polls\\data\\4_hapiness.csv"
+    }
 
 urlpatterns = [
     path('', views.home , name = 'home'),
-    path('table1/', views.table1, name = 'table1'),
-    path('table2/', views.table2, name = 'table2'),
-    path('table3/', views.table3, name = 'table3'),
-    path('table4/', views.table4, name = 'table4'),
-    path('about/', views.about, name = 'about'),
+    path('about/', views.about, name='about'),
+
 ]
 
+# adding table parser here
 urlpatterns += [
-    path('class/', TableView.as_view(table_number = 2), name = 'table_class2_')
+    path(r'table/<slug:slug>', TableView.as_view(), name='table_url_parsing'),
 ]
+
+# path('table1/', TableView.as_view(table_name="weka"), name='table1'),
+# path('table2/', TableView.as_view(table_name="chinese_stock"), name='table2'),
+# path('table3/', TableView.as_view(table_name="license_plate"), name='table3'),
+# path('table4/', TableView.as_view(table_name="hapiness"), name='table4'),
