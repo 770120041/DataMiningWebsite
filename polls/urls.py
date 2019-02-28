@@ -1,7 +1,7 @@
 from django.urls import path
 
 from . import views
-from polls.views import TableView
+from polls.views import *
 
 
 # name is used for a particular mapping(a line in urlpatterns)
@@ -22,8 +22,11 @@ urlpatterns = [
 
 # adding table parser here
 urlpatterns += [
-    path(r'table/<slug:slug>', TableView.as_view(), name='table_url_parsing'),
+    path(r'table/<slug:slug>/', TableView.as_view(), name='table_url_parsing'),
 ]
+# urlpatterns += [
+#     path(r'table/<slug:slug>/functions/', FunctionTableView.as_view(), name='function_table_view'),
+# ]
 
 # path('table1/', TableView.as_view(table_name="weka"), name='table1'),
 # path('table2/', TableView.as_view(table_name="chinese_stock"), name='table2'),
