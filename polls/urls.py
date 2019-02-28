@@ -20,11 +20,12 @@ urlpatterns = [
 
 ]
 
-# adding base tables here
+# adding table parser here
 urlpatterns += [
-    # path('table1/', TableView.as_view(table_name="weka"), name='table1'),
-    # path('table2/', TableView.as_view(table_name="chinese_stock"), name='table2'),
-    # path('table3/', TableView.as_view(table_name="license_plate"), name='table3'),
-    # path('table4/', TableView.as_view(table_name="hapiness"), name='table4'),
     path(r'table/<slug:slug>', TableView.as_view(), name='table_url_parsing'),
 ]
+
+# path('table1/', TableView.as_view(table_name="weka"), name='table1'),
+# path('table2/', TableView.as_view(table_name="chinese_stock"), name='table2'),
+# path('table3/', TableView.as_view(table_name="license_plate"), name='table3'),
+# path('table4/', TableView.as_view(table_name="hapiness"), name='table4'),

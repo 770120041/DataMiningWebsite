@@ -1,0 +1,12 @@
+{% extends 'polls/base.html' %}
+{% block title %} Project {% endblock %}
+{% block content %}
+
+
+    <div>{{ table_name }}</div>
+    <div>
+        {% autoescape off %}
+             {{ table }}
+        {% endautoescape %}
+    </div>
+{% endblock %}

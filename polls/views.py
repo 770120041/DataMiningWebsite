@@ -6,12 +6,9 @@ from django.views import View
 from polls.models import *
 
 
-def home(request):
-    return render(request, 'polls/index.html', {'table': "homepage"})
-
 
 class TableView(View):
-    TEMPLATE_NAME = 'polls/index.html'
+    TEMPLATE_NAME = 'polls/show_table.html'
     table_name = ""
 
     def get(self, request, slug):
@@ -23,6 +20,8 @@ class TableView(View):
         }
         return render(request, self.TEMPLATE_NAME, context=context)
 
+def home(request):
+    return render(request, 'polls/home.html')
 
 
 def about(request):
