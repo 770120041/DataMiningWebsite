@@ -1,0 +1,24 @@
+{% extends 'polls/base.html' %}
+{% block title %} Project {% endblock %}
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                One of three columns
+            </div>
+            <div class="col-sm">
+                One of three columns
+            </div>
+            <div class="col-sm">
+                One of three columns
+            </div>
+        </div>
+    </div>
+    <div>{{ tableName }}</div>
+    <div class="container-fluid">
+        {% autoescape off %}
+             {{ table }}
+        {% endautoescape %}
+    </div>
+{% endblock %}
