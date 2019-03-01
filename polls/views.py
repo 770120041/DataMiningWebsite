@@ -24,7 +24,7 @@ class TableView(View):
     def get(self, request, slug):
         dfmodel = get_object_or_404(DataFrameModel, df_description=slug)
         df = read_csv_file(self.root_path + DATADIRPATH + dfmodel.df_stroed_name)
-        form = Preprocess(initial=self.form_inital)
+        form = PreprocessForm(initial=self.form_inital)
         context ={
             "form": form,
             "tableName": slug,
@@ -35,7 +35,7 @@ class TableView(View):
     def post(self, request, slug):
 
         dfmodel = get_object_or_404(DataFrameModel, df_description=slug)
-        form = Preprocess(request.POST)
+        form = PreprocessForm(request.POST)
         df = read_csv_file(self.root_path + DATADIRPATH + dfmodel.df_stroed_name)
         if form.is_valid():
             if form.cleaned_data['drop_missing']:
@@ -67,7 +67,20 @@ class TableView(View):
 
 
 class ClassificationVIew(View):
-    TEMPLATE_NAME = 'polls/classification.html'
+    TEMPLATE_NAME = 'polls/logic/classification.html'
+    root_path = get_root_path()
+    form_inital = {"drop_missing": True, "digit_to_char": True, "method_selection": "CF"}
+
+    def get(self, request, table_descprition):
+        dfmodel = get_object_or_404(DataFrameModel, df_description=table_descprition)
+        df = read_csv_file(self.root_path + TMPDIRPATH + dfmodel.df_stroed_name)
+        form = ClassificationForm(initial=self.form_inital)
+        context ={
+            "form": form,
+            "tableName": table_descprition,
+            "table": df_to_html(df)
+        }
+        return render(request, self.TEMPLATE_NAME, context=context)
 
     def get(self, request, table_descprition):
         return HttpResponse(table_descprition)
@@ -77,7 +90,7 @@ class ClassificationVIew(View):
 
 
 class ClusteringView(View):
-    TEMPLATE_NAME = 'polls/clustering.html'
+    TEMPLATE_NAME = 'polls/logic/clustering.html'
 
     def get(self, request, table_descprition):
         return HttpResponse(table_descprition)

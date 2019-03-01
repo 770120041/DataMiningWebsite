@@ -19,16 +19,17 @@ urlpatterns = [
     path('about/', views.about, name='about'),
 ]
 
-# adding table parser here
+# pre_process table view
 urlpatterns += [
     path(r'table/<slug:slug>/', TableView.as_view(), name='table_url_parsing'),
 ]
 
+# classification
 urlpatterns += [
-    path(r'CF/<slug:table_descprition>/', ClassificationVIew.as_view(), name='classification'),
     path(r'CF/<slug:table_descprition>/', ClassificationVIew.as_view(), name='classification'),
 ]
 
+# clustering
 urlpatterns += [
     path('delete_all_local_cache/', views.delete_local_cache, name='del_local_cache')
 ]
