@@ -1,27 +1,40 @@
 {% extends 'polls/base.html' %}
 {% block title %} Classification {% endblock %}
 {% block content %}
-    <div class="chosen-container-active">
+    <div class="chosen-container-active" onload="ajaxCheck()">
         <p class="h1 text-center border">{{ tableName }}</p>
     </div>
 
     <div class="container">
         <form method="post" action="">
+
             {% csrf_token %}
 
             {% for hidden_field in form.hidden_fields %}
             {{ hidden_field }}
             {% endfor %}
 
-            {% for field in form.visible_fields %}
-                <div class="form-group">
-                    {{ field.label_tag }}
-                    {{ field }}
-                    {% if field.help_text %}
-                    <small class="form-text text-muted">{{ field.label_tag }}</small>
-                    {% endif %}
+            <div class="row">
+                 <div class="col-sm-5">
+                            {% for field in form.visible_fields %}
+                        <div class="form-group">
+                            {{ field.label_tag }}
+                            {{ field }}
+                            {% if field.help_text %}
+                            <small class="form-text text-muted">{{ field.label_tag }}</small>
+                            {% endif %}
+                        <br>
+                        </div>
+                        <script>ajax_class_change()</script>
+                    {% endfor %}
+                 </div>
+                <div>
+                    <h3> Parameters Descrption:</h3>
+                         <small id="classification_parameter_description">hello world</small>
+
                 </div>
-            {% endfor %}
+            </div>
+
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
@@ -33,4 +46,11 @@
              {{ table }}
         {% endautoescape %}
     </div>
+    <script type="text/javascript">
+        function ajaxCheck(){
+            alert("hello world")
+        };
+    </script>
+
+
 {% endblock %}

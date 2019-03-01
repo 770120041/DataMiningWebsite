@@ -25,7 +25,7 @@ class PreprocessForm(forms.Form):
 
 class ClassificationForm(forms.Form):
     method_dict = {
-        "LG": 'LogisticREgression',
+        "LG": 'LogisticRegression',
         "KN": "KNeighborsClassifier",
         "SV": "SVC",
         "GB": "GradientBoostingClassifier",
@@ -36,7 +36,9 @@ class ClassificationForm(forms.Form):
     }
     Class_method_Choice = ((k, v) for k, v in method_dict.items())
     method_selection = forms.ChoiceField(choices=Class_method_Choice,
-                                         widget=RadioSelect)
+                                         widget=forms.Select(attrs={'onchange': 'ajax_class_change();'})
+                                         )
+    classification_parameters = forms.CharField(widget=forms.TextInput, required=False)
 
 
 class DelCacheForm(forms.Form):
