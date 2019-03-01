@@ -40,7 +40,7 @@ class TableView(View):
         if form.is_valid():
             if form.cleaned_data['drop_missing']:
                 df = drop_na(df)
-            if print(form.cleaned_data['digit_to_char']):
+            if form.cleaned_data['digit_to_char']:
                 df = char_to_digit(df)
 
             # save new df
@@ -69,7 +69,7 @@ class TableView(View):
 class ClassificationVIew(View):
     TEMPLATE_NAME = 'polls/logic/classification.html'
     root_path = get_root_path()
-    form_inital = {"drop_missing": True, "digit_to_char": True, "method_selection": "CF"}
+    form_inital = {"method_selection":"LG"}
 
     def get(self, request, table_descprition):
         dfmodel = get_object_or_404(DataFrameModel, df_description=table_descprition)
@@ -81,9 +81,6 @@ class ClassificationVIew(View):
             "table": df_to_html(df)
         }
         return render(request, self.TEMPLATE_NAME, context=context)
-
-    def get(self, request, table_descprition):
-        return HttpResponse(table_descprition)
 
     def post(self, request):
         pass
@@ -107,6 +104,7 @@ def about(request):
     return render(request, 'polls/about.html')
 
 def delete_local_cache(request):
-    print("deleted local cache")
-    return render(request, 'polls/about.html')
+    print("in deleted local cache funciton")
+    return redirect("/polls/about/")
+
 

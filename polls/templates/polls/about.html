@@ -3,9 +3,11 @@
 
 {% block content %}
     {% autoescape off %}
-        <a class="btn btn-large btn-primary" data-toggle ="confirmation" data-title="Delete Cache?"
-   href="{% url 'polls:del_local_cache' %}" >Delete Local Cache</a>
+        <button class="btn btn-large btn-primary" data-title="Delete Cache?"
+    id='clear-cache-button' onclick="ClearCache()" >Delete Local Cache</button>
 
     {% endautoescape %}
 
 {% endblock %}
+
+

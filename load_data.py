@@ -1,5 +1,6 @@
 from polls.models import DataFrameModel
 
+# load_csv file
 CSV_PATH = {
         "cweka": "1_3cweka.csv",
         "chinese_stock": "2_chinese_stock.csv",
@@ -21,3 +22,5 @@ for key in CSV_PATH.keys():
     }
     csv = DataFrameModel(**kwargs)
     csv.save()
+
+# load method database

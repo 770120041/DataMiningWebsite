@@ -1,4 +1,6 @@
 from django import forms
+from django.forms import RadioSelect
+from django.utils.safestring import mark_safe
 
 """
     if add new methods, need to update:
@@ -23,7 +25,7 @@ class PreprocessForm(forms.Form):
 
 class ClassificationForm(forms.Form):
     method_dict = {
-        "LG": "LogisticRegression",
+        "LG": 'LogisticREgression',
         "KN": "KNeighborsClassifier",
         "SV": "SVC",
         "GB": "GradientBoostingClassifier",
@@ -33,7 +35,8 @@ class ClassificationForm(forms.Form):
         "NB": "GaussianNB",
     }
     Class_method_Choice = ((k, v) for k, v in method_dict.items())
-    method_selection = forms.ChoiceField(choices=Class_method_Choice)
+    method_selection = forms.ChoiceField(choices=Class_method_Choice,
+                                         widget=RadioSelect)
 
 
 class DelCacheForm(forms.Form):

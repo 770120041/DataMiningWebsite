@@ -32,7 +32,7 @@ def save_csv_model(df_description, df_stored_name):
 
 def save_csv_file(df, path):
     final_path = path
-    print("at csv_handler, save_csv_file, file_path:",path)
+    print("at csv_handler, save_csv_file, file_path:", path)
     df.to_csv(final_path)
 
 
@@ -63,12 +63,13 @@ def char_to_digit(df):
     # show_df is only used for shown purpose
     # df is used to remove the non_numeric
 
+    """
+         labels starts from 1
+    """
     show_df = df.copy(deep=True)
     for col in bad_col_name:
-        # starts from 1, uniques is not used now
         labels, uniques = pd.factorize(df[col])
         show_df[col + "_digit"] = pd.Categorical(labels + 1)
 
     df = show_df.drop(columns=bad_col_name)
-
     return df

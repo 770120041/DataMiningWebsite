@@ -5,19 +5,25 @@
         <p class="h1 text-center border">{{ tableName }}</p>
     </div>
 
-    <div class="container border border-danger">
-        <form action="", method="post">
+    <div class="container">
+        <form method="post" action="">
             {% csrf_token %}
-            <div class="form-group">
 
-                <label for="exampleInputEmail1">Preprocess:</label>
-                {{ form }}
-            </div>
-            <div class="row">
-                <div class="col text-center">
-                    <button type="submit" class="btn btn-primary ">Submit</button>
+            {% for hidden_field in form.hidden_fields %}
+            {{ hidden_field }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.help_text %}
+                    <small class="form-text text-muted">{{ field.label_tag }}</small>
+                    {% endif %}
                 </div>
-            </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 
