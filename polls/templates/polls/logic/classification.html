@@ -1,0 +1,30 @@
+{% extends 'polls/base.html' %}
+{% block title %} Classification {% endblock %}
+{% block content %}
+    <div class="chosen-container-active">
+        <p class="h1 text-center border">{{ tableName }}</p>
+    </div>
+
+    <div class="container border border-danger">
+        <form action="", method="post">
+            {% csrf_token %}
+            <div class="form-group">
+
+                <label for="exampleInputEmail1">Preprocess:</label>
+                {{ form }}
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-primary ">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="container-fluid">
+        {% autoescape off %}
+             {{ table }}
+        {% endautoescape %}
+    </div>
+{% endblock %}

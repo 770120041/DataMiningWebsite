@@ -1,7 +1,7 @@
 import csv
 import pandas as pd
 import numpy as np
-
+from polls.models import DataFrameModel
 import os
 
 def get_root_path():
@@ -13,6 +13,21 @@ def get_root_path():
 
 def df_to_html(df):
     return df.to_html
+
+
+def save_csv_model(df_description, df_stored_name):
+    try:
+        go = DataFrameModel.objects.get(df_description=df_description)
+        go.delete()
+
+    except DataFrameModel.DoesNotExist:
+        pass
+    kwargs = {
+        "df_description": df_description,
+        "df_stroed_name": df_stored_name,
+    }
+    new_model = DataFrameModel(**kwargs)
+    new_model.save()
 
 
 def save_csv_file(df, path):

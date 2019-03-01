@@ -1,0 +1,38 @@
+{% extends 'polls/base.html' %}
+{% block title %} Project {% endblock %}
+{% block content %}
+    <div class="chosen-container-active">
+        <p class="h1 text-center border">Table Name:{{ tableName }}</p>
+    </div>
+
+    <div class="container">
+        <form method="post" action="">
+            {% csrf_token %}
+
+            {% for hidden_field in form.hidden_fields %}
+            {{ hidden_field }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.help_text %}
+                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+
+
+
+    <div class="container-fluid">
+        {% autoescape off %}
+             {{ table }}
+        {% endautoescape %}
+    </div>
+{% endblock %}
