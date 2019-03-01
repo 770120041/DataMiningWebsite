@@ -5,7 +5,7 @@ from polls.models import DataFrameModel
 # Register your models here.
 
 class DataFrameModelAdmin(ModelAdmin):
-    list_display = ('data_frame_name', 'df_path')
+    list_display = ('df_description', 'df_stroed_name')
 
 
 admin.site.register(DataFrameModel, DataFrameModelAdmin)
