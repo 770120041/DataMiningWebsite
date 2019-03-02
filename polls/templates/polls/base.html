@@ -17,7 +17,7 @@
 
         {#Title Here!!#}
         <title>{% block title %}Project {% endblock %}</title>
-
+         {% block extra_js %}{% endblock extra_js %}
     </head>
     <body>
 
@@ -29,5 +29,7 @@
 
         {#Content Here!#}
         {% block content %}{% endblock %}
+
+
     </body>
 </html>

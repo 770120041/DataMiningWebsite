@@ -1,7 +1,8 @@
 {% extends 'polls/base.html' %}
 {% block title %} Classification {% endblock %}
 {% block content %}
-    <div class="chosen-container-active" onload="ajaxCheck()">
+
+    <div class="chosen-container-active">
         <p class="h1 text-center border">{{ tableName }}</p>
     </div>
 
@@ -14,6 +15,8 @@
             {{ hidden_field }}
             {% endfor %}
 
+
+            {#calling ajax checks are hard_coded in forms.py#}
             <div class="row">
                  <div class="col-sm-5">
                             {% for field in form.visible_fields %}
@@ -25,7 +28,7 @@
                             {% endif %}
                         <br>
                         </div>
-                        <script>ajax_class_change()</script>
+
                     {% endfor %}
                  </div>
                 <div>
@@ -46,11 +49,15 @@
              {{ table }}
         {% endautoescape %}
     </div>
-    <script type="text/javascript">
-        function ajaxCheck(){
-            alert("hello world")
-        };
-    </script>
 
 
+
+
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+    {#do initalization here#}
+     $("#classification_parameter_description").text("first method");
+</script>
 {% endblock %}

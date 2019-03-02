@@ -69,7 +69,7 @@ class TableView(View):
 class ClassificationVIew(View):
     TEMPLATE_NAME = 'polls/logic/classification.html'
     root_path = get_root_path()
-    form_inital = {"method_selection":"LG", "classification_parameters":""}
+    form_inital = {"method_selection": "LG", "classification_parameters": ""}
 
     def get(self, request, table_descprition):
         dfmodel = get_object_or_404(DataFrameModel, df_description=table_descprition)
