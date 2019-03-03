@@ -66,7 +66,7 @@ class TableView(View):
         return render(request, self.TEMPLATE_NAME, context=context)
 
 
-class ClassificationVIew(View):
+class ClassificationView(View):
     TEMPLATE_NAME = 'polls/logic/classification.html'
     root_path = get_root_path()
     form_inital = {"method_selection": "LG", "classification_parameters": ""}
@@ -82,8 +82,19 @@ class ClassificationVIew(View):
         }
         return render(request, self.TEMPLATE_NAME, context=context)
 
-    def post(self, request):
-        pass
+    # rendering post and redirect to showing result
+    def post(self, request, table_descprition):
+        dfmodel = get_object_or_404(DataFrameModel, df_description=table_descprition)
+        df = read_csv_file(self.root_path + TMPDIRPATH + dfmodel.df_stroed_name)
+        form = ClassificationForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data["classification_parameters"])
+        context = {
+            "form": form,
+            "tableName": table_descprition,
+            "table": df_to_html(df)
+        }
+        return render(request, self.TEMPLATE_NAME, context=context)
 
 
 class ClusteringView(View):

@@ -1,9 +1,9 @@
-function ajax_class_change(first=false){
+function ajax_class_change(){
     let method_name = $('#id_method_selection').find(":selected").text();
-    class_method_description_text(method_name)
-
+    class_method_default_parameter(method_name);
 }
 
+// default descrption text
 function class_method_description_text(method_name) {
 
     let method_dict = {
