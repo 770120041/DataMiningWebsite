@@ -33,7 +33,7 @@
                  </div>
                 <div>
                     <h3> Parameters Descrption:</h3>
-                         <small id="classification_parameter_description">hello world</small>
+                         <small id="classification_parameter_description"><span></span></small>
 
                 </div>
             </div>
@@ -57,7 +57,9 @@
 
 {% block extra_js %}
 <script type="text/javascript">
-    {#do initalization here#}
-     $("#classification_parameter_description").text("first method");
+    {# Initial here#}
+    class_description_text("LogisticRegression")
+     {#$("#classification_parameter_description span").append("first method");#}
+
 </script>
 {% endblock %}

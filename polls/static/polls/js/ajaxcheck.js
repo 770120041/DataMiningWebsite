@@ -1,20 +1,22 @@
-function ajax_class_change(){
+
+
+function ajax_class_change() {
     let method_name = $('#id_method_selection').find(":selected").text();
-    class_method_default_parameter(method_name);
+    class_description_text(method_name);
 }
 
-// default descrption text
-function class_method_description_text(method_name) {
+
+function class_description_text(method_name) {
 
     let method_dict = {
-             'LogisticRegression': "logistic ",
-             "KNeighborsClassifier": "Knn neighbors",
-             "SVC": "SVCrs",
-             "GradientBoostingClassifier": "GBC",
-             "DecisionTreeClassifier": "decision tree",
-             "RandomForestClassifier": "randomclassificer",
-             "MLPClassifier": "MLPC",
-             "GaussianNB": "Gaussian",
+             'LogisticRegression': "logistic parames ",
+             "KNeighborsClassifier": "Knn neighbors parames",
+             "SVC": "SVCrs parames",
+             "GradientBoostingClassifier": "GBC parames",
+             "DecisionTreeClassifier": "decision tree parames",
+             "RandomForestClassifier": "randomclassificer parames",
+             "MLPClassifier": "MLPC parames",
+             "GaussianNB": "Gaussian parames",
         }
       $("#classification_parameter_description").text(method_dict[method_name]);
 }
