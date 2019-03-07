@@ -89,6 +89,7 @@ class ClassificationView(View):
         form = ClassificationForm(request.POST)
         if form.is_valid():
             print(form.cleaned_data["classification_parameters"])
+
         context = {
             "form": form,
             "tableName": table_descprition,
