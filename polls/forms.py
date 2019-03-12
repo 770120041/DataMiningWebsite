@@ -53,7 +53,7 @@ class ClassificationForm(forms.Form):
                                          widget=forms.Select(attrs={'onchange': 'ajax_class_change();'})
                                          )
     classification_parameters = forms.CharField(widget=forms.TextInput, required=False)
-    target_column = forms.CharField()
+    label_name = forms.CharField()
 
     train_ratio = forms.ChoiceField(choices=Class_Train_Ratio)
     # def __init__(self, targetChoices, *args, **kwargs):

@@ -94,9 +94,10 @@ class ClassificationView(View):
         df = read_csv_file(self.root_path + TMPDIRPATH + dfmodel.df_stroed_name)
         form = ClassificationForm(request.POST)
         if form.is_valid():
-            print(form.cleaned_data["method_selection"])
-            print(form.cleaned_data["classification_parameters"])
-            print(form.cleaned_data["target_column"])
+            new_df, train_stat = MyClassification(df, form.cleaned_data["label_name"],form.cleaned_data["method_selection"],form.cleaned_data["train_ratio"])
+
+            print(new_df)
+            print(train_stat)
             return redirect('/polls/CF_result/')
 
         # if in this, means that form is invalid
