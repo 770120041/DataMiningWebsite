@@ -17,6 +17,16 @@ from sklearn.naive_bayes import GaussianNB
 
 
 # need refractor here
+method_dict = {
+        "LG": LogisticRegression(),
+        "KN": KNeighborsClassifier(),
+        "SV": SVC(),
+        "GB": GradientBoostingClassifier(n_estimators=1000),
+        "DT": tree.DecisionTreeClassifier(),
+        "RF": RandomForestClassifier(n_estimators=1000),
+        "MP": MLPClassifier(alpha = 1),
+        "NB": GaussianNB(),
+    }
 
 dict_classifiers = {
     "Logistic Regression": LogisticRegression(),
@@ -32,7 +42,7 @@ dict_classifiers = {
     # "Gaussian Process": GaussianProcessClassifier()
 }
 
-def batch_classify(X_train, Y_train, X_test, Y_test, no_classifiers=5, verbose=True):
+def batch_classify(X_train, Y_train, X_test, Y_test, classifier_name, verbose=True):
     """
     This method, takes as input the X, Y matrices of the Train and Test set.
     And fits them on all of the Classifiers specified in the dict_classifier.
@@ -43,22 +53,33 @@ def batch_classify(X_train, Y_train, X_test, Y_test, no_classifiers=5, verbose=T
     So it is best to train them on a smaller dataset first and
     decide whether you want to comment them out or not based on the test accuracy score.
     """
+    t_start = time.process_time()
+    classifier = method_dict[classifier_name]
+    classifier.fit(X_train, Y_train)
+    t_end = time.process_time()
+    t_diff = t_end - t_start;
+    train_score = classifier.score(X_train, Y_train)
+    test_score = classifier.score(X_test, Y_test)
 
-    dict_models = {}
-    for classifier_name, classifier in list(dict_classifiers.items())[:no_classifiers]:
-        t_start = time.process_time()
-        classifier.fit(X_train, Y_train)
-        t_end = time.process_time()
-
-        t_diff = t_end - t_start
-        train_score = classifier.score(X_train, Y_train)
-        test_score = classifier.score(X_test, Y_test)
-
-        dict_models[classifier_name] = {'model': classifier, 'train_score': train_score, 'test_score': test_score,
+    result =  {'model': classifier, 'train_score': train_score, 'test_score': test_score,
                                         'train_time': t_diff}
-        if verbose:
-            print("trained {c} in {f:.2f} s".format(c=classifier_name, f=t_diff))
-    return dict_models
+    return result
+
+    # dict_models = {}
+    # for classifier_name, classifier in list(dict_classifiers.items())[:no_classifiers]:
+    #     t_start = time.process_time()
+    #     classifier.fit(X_train, Y_train)
+    #     t_end = time.process_time()
+    #
+    #     t_diff = t_end - t_start
+    #     train_score = classifier.score(X_train, Y_train)
+    #     test_score = classifier.score(X_test, Y_test)
+    #
+    #     dict_models[classifier_name] = {'model': classifier, 'train_score': train_score, 'test_score': test_score,
+    #                                     'train_time': t_diff}
+    #     if verbose:
+    #         print("trained {c} in {f:.2f} s".format(c=classifier_name, f=t_diff))
+    # return dict_models
 
 
 def display_dict_models(dict_models, sort_by='test_score'):

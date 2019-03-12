@@ -15,7 +15,8 @@ DATADIRPATH = "\\polls\\data\\"
 class TableView(View):
     """
         This class is used for pre-processing and method selection of table
-        Datas are precopied data here
+        After choosing pre-processing options and methods, redirect to specific
+        method diplaying
     """
     TEMPLATE_NAME = 'polls/preprocess.html'
     form_inital = {"drop_missing": True, "digit_to_char": True, "method_selection": "CF"}
@@ -67,13 +68,18 @@ class TableView(View):
 
 
 class ClassificationView(View):
+    """
+        This view is used for classification parameters seting
+    """
     TEMPLATE_NAME = 'polls/logic/classification.html'
     root_path = get_root_path()
-    form_inital = {"method_selection": "LG", "classification_parameters": ""}
+    form_inital = {"method_selection": "LG", "train_ratio" : "0.7"}
+
 
     def get(self, request, table_descprition):
         dfmodel = get_object_or_404(DataFrameModel, df_description=table_descprition)
         df = read_csv_file(self.root_path + TMPDIRPATH + dfmodel.df_stroed_name)
+
         form = ClassificationForm(initial=self.form_inital)
         context ={
             "form": form,
@@ -88,14 +94,24 @@ class ClassificationView(View):
         df = read_csv_file(self.root_path + TMPDIRPATH + dfmodel.df_stroed_name)
         form = ClassificationForm(request.POST)
         if form.is_valid():
+            print(form.cleaned_data["method_selection"])
             print(form.cleaned_data["classification_parameters"])
+            print(form.cleaned_data["target_column"])
+            return redirect('/polls/CF_result/')
 
+        # if in this, means that form is invalid
         context = {
             "form": form,
             "tableName": table_descprition,
             "table": df_to_html(df)
         }
         return render(request, self.TEMPLATE_NAME, context=context)
+
+
+class CFViewResult(View):
+    def get(self, request):
+        return HttpResponse("hello world")
+
 
 
 class ClusteringView(View):
@@ -106,6 +122,7 @@ class ClusteringView(View):
 
     def post(self, request):
         pass
+
 
 
 def home(request):

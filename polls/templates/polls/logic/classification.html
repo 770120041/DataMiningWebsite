@@ -21,7 +21,7 @@
                  <div class="col-sm-5">
                             {% for field in form.visible_fields %}
                         <div class="form-group">
-                            {{ field.label_tag }}
+                            {{ field.label_tag }}<br>
                             {{ field }}
                             {% if field.help_text %}
                             <small class="form-text text-muted">{{ field.label_tag }}</small>

@@ -27,6 +27,7 @@ urlpatterns += [
 # classification
 urlpatterns += [
     path(r'CF/<slug:table_descprition>/', ClassificationView.as_view(), name='classification'),
+    path(r'CF_result/', CFViewResult.as_view(), name='CFresult')
 ]
 
 # clustering
