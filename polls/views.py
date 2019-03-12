@@ -10,7 +10,7 @@ from polls.logic import *
 
 TMPDIRPATH = "\\polls\\tmp\\"
 DATADIRPATH = "\\polls\\data\\"
-
+ROOTPATH = get_root_path()
 
 class TableView(View):
     """
@@ -94,11 +94,14 @@ class ClassificationView(View):
         df = read_csv_file(self.root_path + TMPDIRPATH + dfmodel.df_stroed_name)
         form = ClassificationForm(request.POST)
         if form.is_valid():
-            new_df, train_stat = MyClassification(df, form.cleaned_data["label_name"],form.cleaned_data["method_selection"],form.cleaned_data["train_ratio"])
-
-            print(new_df)
-            print(train_stat)
-            return redirect('/polls/CF_result/')
+            new_csv, train_stat = MyClassification(df, form.cleaned_data["label_name"],form.cleaned_data["method_selection"],form.cleaned_data["train_ratio"])
+            new_csv_description = dfmodel.df_description + "-result"
+            new_csv_store_name = dfmodel.df_stroed_name.replace("_pre.csv", "_result.csv")
+            save_csv_file(new_csv, self.root_path + TMPDIRPATH + new_csv_store_name)
+            # save this model to database
+            save_csv_model(new_csv_description, new_csv_store_name)
+            request.session['cfstat'] = train_stat
+            return redirect('/polls/CF_result/'+new_csv_description+"/")
 
         # if in this, means that form is invalid
         context = {
@@ -110,8 +113,20 @@ class ClassificationView(View):
 
 
 class CFViewResult(View):
-    def get(self, request):
-        return HttpResponse("hello world")
+
+    TEMPLATE_NAME = 'polls/logic/classfication_result.html'
+    def get(self, request,table_descprition):
+        train_stat = request.session['cfstat']
+
+        dfmodel = get_object_or_404(DataFrameModel, df_description=table_descprition)
+        df = read_csv_file(ROOTPATH + TMPDIRPATH + dfmodel.df_stroed_name)
+        context = {
+            "tableName": table_descprition,
+            "table": df_to_html(df),
+            "stat" : train_stat
+        }
+        return render(request, self.TEMPLATE_NAME, context=context)
+
 
 
 

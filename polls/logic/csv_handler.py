@@ -39,6 +39,7 @@ def save_csv_file(df, path):
 def read_csv_file(path):
     # print("path is :"+path)
     df = pd.read_csv(path)
+    df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
     return df
 
 

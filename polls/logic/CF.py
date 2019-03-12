@@ -27,6 +27,17 @@ method_dict = {
         "NB": GaussianNB(),
     }
 
+METHODDICT = {
+    "LG": 'LogisticRegression',
+    "KN": "KNeighborsClassifier",
+    "SV": "SVC",
+    "GB": "GradientBoostingClassifier",
+    "DT": "DecisionTreeClassifier",
+    "RF": "RandomForestClassifier",
+    "MP": "MLPClassifier",
+    "NB": "GaussianNB",
+}
+
 
 def do_classification(df_droped_label, X_train, Y_train, X_test, Y_test, classifier_name):
     t_start = time.process_time()
@@ -37,7 +48,7 @@ def do_classification(df_droped_label, X_train, Y_train, X_test, Y_test, classif
     train_score = classifier.score(X_train, Y_train)
     test_score = classifier.score(X_test, Y_test)
 
-    result = {'model': classifier, 'train_score': train_score, 'test_score': test_score,
+    result = {'Classifier': METHODDICT[classifier_name], 'TrainScore': train_score, 'TestScore': test_score,
                                         'train_time': t_diff}
     predict_label = classifier.predict(df_droped_label)
     return predict_label, result
