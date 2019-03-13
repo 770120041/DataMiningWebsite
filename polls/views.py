@@ -19,7 +19,7 @@ class TableView(View):
         method diplaying
     """
     TEMPLATE_NAME = 'polls/preprocess.html'
-    form_inital = {"drop_missing": True, "digit_to_char": True, "method_selection": "CF"}
+    form_inital = {"drop_missing": True, "digit_to_char": True, "Classifier": "CF"}
     root_path = get_root_path()
 
     def get(self, request, slug):
@@ -56,7 +56,7 @@ class TableView(View):
             print(form.cleaned_data['method_selection'])
 
              # redirect to classification method
-            return redirect("/polls/"+form.cleaned_data['method_selection']+"/"+new_csv_description+"/")
+            return redirect("/polls/" + form.cleaned_data['method_selection'] + "/" + new_csv_description + "/")
 
         # in case form not valid
         context = {
@@ -73,7 +73,7 @@ class ClassificationView(View):
     """
     TEMPLATE_NAME = 'polls/logic/classification.html'
     root_path = get_root_path()
-    form_inital = {"method_selection": "LG", "train_ratio" : "0.7"}
+    form_inital = {"Classifier": "LG", "train_ratio" : "0.7"}
 
 
     def get(self, request, table_descprition):
@@ -94,7 +94,9 @@ class ClassificationView(View):
         df = read_csv_file(self.root_path + TMPDIRPATH + dfmodel.df_stroed_name)
         form = ClassificationForm(request.POST)
         if form.is_valid():
-            new_csv, train_stat = MyClassification(df, form.cleaned_data["label_name"],form.cleaned_data["method_selection"],form.cleaned_data["train_ratio"])
+            print(form.cleaned_data["classification_parameters"])
+            # param = form.cleaned_data
+            new_csv, train_stat = MyClassification(df, form.cleaned_data["label_name"], form.cleaned_data["Classifier"],form.cleaned_data["train_ratio"], param=form.cleaned_data["classification_parameters"])
             new_csv_description = dfmodel.df_description + "-result"
             new_csv_store_name = dfmodel.df_stroed_name.replace("_pre.csv", "_result.csv")
             save_csv_file(new_csv, self.root_path + TMPDIRPATH + new_csv_store_name)

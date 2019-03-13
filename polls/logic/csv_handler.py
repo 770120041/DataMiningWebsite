@@ -32,7 +32,7 @@ def save_csv_model(df_description, df_stored_name):
 
 def save_csv_file(df, path):
     final_path = path
-    print("at csv_handler, save_csv_file, file_path:", path)
+    # print("at csv_handler, save_csv_file, file_path:", path)
     df.to_csv(final_path)
 
 

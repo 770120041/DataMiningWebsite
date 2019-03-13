@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import time
+import json
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 
@@ -14,17 +15,18 @@ from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.gaussian_process.kernels import RBF
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import GaussianNB
+from ast import literal_eval
 
 # need refractor here
-method_dict = {
-        "LG": LogisticRegression(),
-        "KN": KNeighborsClassifier(),
-        "SV": SVC(),
-        "GB": GradientBoostingClassifier(n_estimators=1000),
-        "DT": tree.DecisionTreeClassifier(),
-        "RF": RandomForestClassifier(n_estimators=1000),
-        "MP": MLPClassifier(alpha = 1),
-        "NB": GaussianNB(),
+classifierFunction = {
+        "LG": LogisticRegression,
+        "KN": KNeighborsClassifier,
+        "SV": SVC,
+        "GB": GradientBoostingClassifier,
+        "DT": tree.DecisionTreeClassifier,
+        "RF": RandomForestClassifier,
+        "MP": MLPClassifier,
+        "NB": GaussianNB,
     }
 
 METHODDICT = {
@@ -39,9 +41,17 @@ METHODDICT = {
 }
 
 
-def do_classification(df_droped_label, X_train, Y_train, X_test, Y_test, classifier_name):
+
+def do_classification(df_droped_label, X_train, Y_train, X_test, Y_test, classifier_name,param):
     t_start = time.process_time()
-    classifier = method_dict[classifier_name]
+    param_literal = json.loads(param)
+
+    print(type(param_literal))
+    classifier = classifierFunction[classifier_name](**param_literal)
+
+
+
+    # classifier = classifier_dict[classifier_name]
     classifier.fit(X_train, Y_train)
     t_end = time.process_time()
     t_diff = t_end - t_start;
@@ -70,14 +80,14 @@ def get_train_test_data(df, label_name, x_name, ratio):
 
     return df_train, df_test, x_train, label_train, x_test, label_test
 
-def MyClassification(df, label_name, classifier_name, train_ratio):
+def MyClassification(df, label_name, classifier_name, train_ratio, param=""):
     train_ratio = float(train_ratio)
     x_name = list(df.columns.values)
     x_name.remove(label_name)
     df_train, df_test, X_train, Y_train, X_test, Y_test = get_train_test_data(df, label_name, x_name,
                                                                          train_ratio)
 
-    predict_label, train_result = do_classification(df.drop([label_name], axis=1),X_train, Y_train, X_test, Y_test, classifier_name)
+    predict_label, train_result = do_classification(df.drop([label_name], axis=1),X_train, Y_train, X_test, Y_test, classifier_name,param=param)
     new_df = df.copy(deep=True)
     new_df = new_df.rename(columns = {label_name: "Label"})
     new_df["prediction_result"] = predict_label

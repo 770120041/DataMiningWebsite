@@ -49,10 +49,10 @@ class ClassificationForm(forms.Form):
     }
     Class_Train_Ratio = ((k,v) for k,v in dict_train_raito.items())
     Class_method_Choice = ((k, v) for k, v in method_dict.items())
-    method_selection = forms.ChoiceField(choices=Class_method_Choice,
-                                         widget=forms.Select(attrs={'onchange': 'ajax_class_change();'})
-                                         )
-    classification_parameters = forms.CharField(widget=forms.TextInput, required=False)
+    Classifier = forms.ChoiceField(choices=Class_method_Choice,
+                                   widget=forms.Select(attrs={'onchange': 'ajax_class_change();'})
+                                   )
+    classification_parameters = forms.CharField(widget=forms.Textarea, required=False)
     label_name = forms.CharField()
 
     train_ratio = forms.ChoiceField(choices=Class_Train_Ratio)
