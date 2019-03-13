@@ -15,7 +15,7 @@ let logis_params_description_text =
         "*** max_iter : int, default: 100<br>" +
         "*** tol : float, default: 1e-4(Tolerance for stopping criteria.)<br>"  +
         "<br>More details can be found at " +
-        "<a href=\"https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression\">Official Document</a>" +
+        "<a target=\"_blank\" href=\"https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression\">Official Document</a>" +
         "</span> \n";
 
 let knn_params_description_text =
@@ -25,86 +25,86 @@ let knn_params_description_text =
         "*** weights : str or callable, optional (default = ‘uniform’)<br>" +
         "*** leaf_size : int, optional (default = 30)<br>"  +
         "<br>More details can be found at " +
-        "<a href=\"https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html\">Official Document</a>" +
+        "<a target=\"_blank\" href=\"https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html\">Official Document</a>" +
         "</span> \n";
 
 let SVC_params_description_text =
    params_description_head +
         "*  SVC parameters:<br>" +
-        "*** n_neighbors : int, optional (default = 5)<br>" +
-        "*** weights : str or callable, optional (default = ‘uniform’)<br>" +
-        "*** leaf_size : int, optional (default = 30)<br>"  +
+        "*** C : float, optional (default=1.0)<br>" +
+        "*** kernel : string, optional (default=’rbf’)<br>" +
+        "*** degree : int, optional (default=3)<br>"  +
+        "*** tol : float, optional (default=1e-3)<br>" +
         "<br>More details can be found at " +
-        "<a href=\"https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html\">Official Document</a>" +
+        "<a target=\"_blank\" href=\"https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html\">Official Document</a>" +
         "</span> \n";
 
 let GBC_params_description_text =
    params_description_head +
-        "*  GBC parameters:<br>" +
-        "*** n_neighbors : int, optional (default = 5)<br>" +
-        "*** weights : str or callable, optional (default = ‘uniform’)<br>" +
-        "*** leaf_size : int, optional (default = 30)<br>"  +
+        "*  GradientBoostingClassifier parameters:<br>" +
+        "*** loss : {‘deviance’, ‘exponential’}, optional (default=’deviance’)<br>" +
+        "*** learning_rate : float, optional (default=0.1)<br>" +
+        "*** n_estimators : int (default=100)<br>"  +
         "<br>More details can be found at " +
-        "<a href=\"https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html\">Official Document</a>" +
+        "<a target=\"_blank\" href=\"https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html\">Official Document</a>" +
         "</span> \n";
 
 let DT_params_description_text =
    params_description_head +
-        "*  DT parameters:<br>" +
-        "*** n_neighbors : int, optional (default = 5)<br>" +
-        "*** weights : str or callable, optional (default = ‘uniform’)<br>" +
-        "*** leaf_size : int, optional (default = 30)<br>"  +
+        "*  DecisionTreeClassifier parameters:<br>" +
+        "*** criterion : string, optional (default=”gini”)<br>" +
+        "*** splitter : string, optional (default=”best”)<br>" +
+        "*** max_depth : int or None, optional (default=None)<br>"  +
         "<br>More details can be found at " +
-        "<a href=\"https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html\">Official Document</a>" +
+        "<a target=\"_blank\" href=\"https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html\">Official Document</a>" +
         "</span> \n";
 
 let RF_params_description_text =
    params_description_head +
-        "*  RF parameters:<br>" +
-        "*** n_neighbors : int, optional (default = 5)<br>" +
-        "*** weights : str or callable, optional (default = ‘uniform’)<br>" +
-        "*** leaf_size : int, optional (default = 30)<br>"  +
+        "*  RandomForestClassifier parameters:<br>" +
+        "*** n_estimators : integer, optional (default=10)<br>" +
+        "*** criterion : string, optional (default=”gini”)<br>" +
+        "*** max_depth : integer or None, optional (default=None)<br>"  +
         "<br>More details can be found at " +
-        "<a href=\"https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html\">Official Document</a>" +
+        "<a target=\"_blank\" href=\"https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html\">Official Document</a>" +
         "</span> \n";
 
 let MLPC_params_description_text =
    params_description_head +
-        "*  MLPC parameters:<br>" +
-        "*** n_neighbors : int, optional (default = 5)<br>" +
-        "*** weights : str or callable, optional (default = ‘uniform’)<br>" +
-        "*** leaf_size : int, optional (default = 30)<br>"  +
+        "*  MLPClassifier parameters:<br>" +
+        "*** hidden_layer_sizes : tuple, length = n_layers - 2, default (100,)<br>" +
+        "*** activation : {‘identity’, ‘logistic’, ‘tanh’, ‘relu’}, default ‘relu’<br>" +
+        "*** solver : {‘lbfgs’, ‘sgd’, ‘adam’}, default ‘adam’<br>"  +
         "<br>More details can be found at " +
-        "<a href=\"https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html\">Official Document</a>" +
+        "<a target=\"_blank\" href=\"https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html\">Official Document</a>" +
         "</span> \n";
 
-GNB_params_description_text = params_description_head +
-        "*  GNB parameters:<br>" +
-        "*** n_neighbors : int, optional (default = 5)<br>" +
-        "*** weights : str or callable, optional (default = ‘uniform’)<br>" +
-        "*** leaf_size : int, optional (default = 30)<br>"  +
+let GNB_params_description_text = params_description_head +
+        "*  GaussianNB parameters:<br>" +
+        "*** priors : array-like, shape (n_classes,)<br>" +
+        "*** var_smoothing : float, optional (default=1e-9)<br>" +
         "<br>More details can be found at " +
-        "<a href=\"https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html\">Official Document</a>" +
+        "<a target=\"_blank\" href=\"https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.GaussianNB.html\">Official Document</a>" +
         "</span> \n";
 
 let logistic_init_param = "{\"penalty\":\"l1\", \"max_iter\":100}";
 let knn_init_param = "{\"n_neighbors\":5}";
-let SVC_init_param = "SVC";
-let GBC_init_parma =  "GBC init param";
-let DCT_init_param =  "decision tree init param";
-let RF_init_param =  "randomclassificer init param";
-let MLPC_init_param = "MLPC init param";
-let Gaussian_init_param = "Gaussian init param";
+let SVC_init_param = "{\"tol\":1e-3, \"C\":1.0}";
+// let GBC_init_param =  "{\"loss\":\"exponential\", \"n_estimators\":100}";
+let DCT_init_param =  "{\"criterion\":\"gini\", \"splitter\":\"best\"}";
+let RF_init_param =  "{\"n_estimators\":10, \"criterion\":\"gini\"}";
+let MLPC_init_param = "{\"activation\":\"relu\"}";
+let GNB_init_param = "{\"var_smoothing\":1e-9}";
 
    let method_init_parma_dict = {
              'LogisticRegression': logistic_init_param,
              "KNeighborsClassifier": knn_init_param,
              "SVC": SVC_init_param,
-             "GradientBoostingClassifier": GBC_init_parma,
+             // "GradientBoostingClassifier": GBC_init_param,
              "DecisionTreeClassifier": DCT_init_param,
              "RandomForestClassifier": RF_init_param,
              "MLPClassifier": MLPC_init_param,
-             "GaussianNB": Gaussian_init_param,
+             "GaussianNB": GNB_init_param,
         };
 
 
@@ -112,7 +112,7 @@ let Gaussian_init_param = "Gaussian init param";
              'LogisticRegression': logis_params_description_text,
              "KNeighborsClassifier": knn_params_description_text,
              "SVC": SVC_params_description_text,
-             "GradientBoostingClassifier": GBC_params_description_text,
+             // "GradientBoostingClassifier": GBC_params_description_text,
              "DecisionTreeClassifier": DT_params_description_text,
              "RandomForestClassifier": RF_params_description_text,
              "MLPClassifier": MLPC_params_description_text,

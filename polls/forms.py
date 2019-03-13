@@ -30,7 +30,7 @@ class ClassificationForm(forms.Form):
         "LG": 'LogisticRegression',
         "KN": "KNeighborsClassifier",
         "SV": "SVC",
-        "GB": "GradientBoostingClassifier",
+        # "GB": "GradientBoostingClassifier",
         "DT": "DecisionTreeClassifier",
         "RF": "RandomForestClassifier",
         "MP": "MLPClassifier",
