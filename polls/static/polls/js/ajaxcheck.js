@@ -1,54 +1,71 @@
 
 
-function ajax_class_change() {
-    let method_name = $('#id_method_selection').find(":selected").text();
-    class_description_text(method_name);
-    init_classification_parameters(method_name);
-}
+let params_description_head =   "<span>" +
+        "*  Classifier is the method used for classification<br>" +
+        "*  Lable Name is the name of the label used for training<br>" +
+        "*  Train ratio is the Train/Test ratio used for training and testing.<br><br>"+
+        "*  Parameters can be set, Example: type in <em>{\"penalty\":\"l1\", \"max_iter\":100}</em><br> in the field of Classification parameters" +
+    " to set parameter \"penalty\" to \"l1\",\"max_iter\" to 100 <br>";
+
+let logis_params_description_text =
+        params_description_head+
+        "*   Logistic Regression parameters:<br>" +
+        "*** penalty : str, ‘l1’ or ‘l2’, default: ‘l2’<br>" +
+        "*** max_iter : int, default: 100<br>" +
+        "*** tol : float, default: 1e-4(Tolerance for stopping criteria.)<br>"  +
+        "<br>More details can be found at " +
+        "<a href=\"https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression\">Official Document</a>" +
+        "</span> \n";
+let knn_params_description_text =
+   params_description_head +
+        "*  KNN parameters:<br>" +
+        "*** n_neighbors : int, optional (default = 5)<br>" +
+        "*** weights : str or callable, optional (default = ‘uniform’)<br>" +
+        "*** leaf_size : int, optional (default = 30)<br>"  +
+        "<br>More details can be found at " +
+        "<a href=\"https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html\">Official Document</a>" +
+        "</span> \n";
+let logistic_init_param = "{\"penalty\":\"l1\", \"max_iter\":100}";
+let knn_init_param = "{\"n_neighbors\":5}";
 
 
-function class_description_text(method_name) {
-
-
-    let method_dict = {
-             'LogisticRegression': logis_params_description_text,
-             "KNeighborsClassifier": "Knn neighbors parames",
-             "SVC": "SVCrs parames",
-             "GradientBoostingClassifier": "GBC parames",
-             "DecisionTreeClassifier": "decision tree parames",
-             "RandomForestClassifier": "randomclassificer parames",
-             "MLPClassifier": "MLPC parames",
-             "GaussianNB": "Gaussian parames",
-        }
-      $("#classification_parameter_description").wrap(method_dict[method_name]);
-}
-function init_classification_parameters(method_name){
-    let method_init_parma_dict = {
+   let method_init_parma_dict = {
              'LogisticRegression': logistic_init_param,
-             "KNeighborsClassifier": "Knn neighbors init param",
+             "KNeighborsClassifier": knn_init_param,
              "SVC": "SVCrs init param",
              "GradientBoostingClassifier": "GBC init param",
              "DecisionTreeClassifier": "decision tree init param",
              "RandomForestClassifier": "randomclassificer init param",
              "MLPClassifier": "MLPC init param",
              "GaussianNB": "Gaussian init param",
-        }
-        document.getElementById("id_classification_parameters").value = method_init_parma_dict[method_name];
+        };
+
+
+    let method_description_dict = {
+             'LogisticRegression': logis_params_description_text,
+             "KNeighborsClassifier": knn_params_description_text,
+             "SVC": "SVCrs parames",
+             "GradientBoostingClassifier": "GBC parames",
+             "DecisionTreeClassifier": "decision tree parames",
+             "RandomForestClassifier": "randomclassificer parames",
+             "MLPClassifier": "MLPC parames",
+             "GaussianNB": "Gaussian parames",
+        };
+
+function class_description_text(method_name) {
+    alert(method_description_dict[method_name])
+    $("#classification_parameter_description").wrapInner(method_description_dict[method_name]);
+}
+function init_classification_parameters(method_name){
+// alert(method_init_parma_dict[method_name])
+    alert(method_init_parma_dict[method_name])
+    $("#id_classification_parameters").text(method_init_parma_dict[method_name])
 }
 
 
-let logis_params_description_text =
-        "<small>" +
-        "*  Classifier is the method used for classification<br>" +
-        "*  Lable Name is the name of the label used for training<br>" +
-        "*  Train ratio is the Train/Test ratio used for training and testing.<br><br>" +
-        "*  Classification parameters:<br>" +
-        "*** penalty : str, ‘l1’ or ‘l2’, default: ‘l2’<br>" +
-        "*** max_iter : int, default: 100<br>" +
-        "*** tol : float, default: 1e-4(Tolerance for stopping criteria.)<br>"  +
-        "*** Usage Example: type in <em>{\"penalty\":\"l1\", \"max_iter\":100}</em>, to set parameter \"penalty\" to \"l1\" <br>" +
-        "<br>More details can be referenced at " +
-        "<a href=\"https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression\">Official Document</a>" +
-        "</small> \n";
-
-let logistic_init_param = "{\"penalty\":\"l1\", \"max_iter\":100}"
+function ajax_class_change() {
+    let method_name = $('#id_Classifier').find(":selected").text();
+    alert(method_name);
+    class_description_text(method_name);
+    init_classification_parameters(method_name);
+}
