@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
+from django.core.validators import FileExtensionValidator
 
 
 from polls.forms import  *
@@ -149,6 +150,27 @@ def home(request):
 
 def about(request):
     return render(request, 'polls/about.html')
+
+def success_url(request):
+    return HttpResponse("success page")
+
+def fail_upload(request):
+    return HttpResponse("fail page")
+
+def upload_file(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            file = form.cleaned_data["file"]
+            if form.cleaned_data['title'].lower().endswith('.csv') is not True:
+                return redirect('/polls/fail_upload/')
+
+            print("file name is " + form.cleaned_data['title'])
+            save_upload_file(file, ROOTPATH + TMPDIRPATH + form.cleaned_data["title"])
+            return redirect('/polls/success/')
+    else:
+        form = UploadFileForm()
+    return render(request, 'polls/upload.html', {'form': form})
 
 def delete_local_cache(request):
     print("in deleted local cache funciton")

@@ -34,3 +34,11 @@ urlpatterns += [
 urlpatterns += [
     path('delete_all_local_cache/', views.delete_local_cache, name='del_local_cache')
 ]
+
+urlpatterns += [
+    path('upload/', views.upload_file, name='upload_url')
+]
+urlpatterns += [
+    path('success/',views.success_url, name='op_success'),
+    path('fail_upload/', views.fail_upload, name = 'fail_uload')
+]

@@ -8,10 +8,17 @@
         <li class="nav_content"><a href="/polls/table/chinese_stock">2-chinese-stock</a></li>
         <li class="nav_content"><a href="/polls/table/license_plate">3-Shanghai license plate price</a></li>
         <li class="nav_content"><a href="/polls/table/hapiness">4-happiness2017</a></li>
-        <li class="nav_content"><a href="/polls/upload">UploadCSV</a></li>
     </ul>
     {% autoescape off %}
-        HomePage
+        <div class="container">Please select files to upload:</div>
+        <div class="container">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                 {{ form }}
+                <button type="submit">Upload</button>
+            </form>
+
+        </div>
 
     {% endautoescape %}
 

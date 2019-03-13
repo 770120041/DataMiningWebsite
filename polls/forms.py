@@ -56,15 +56,12 @@ class ClassificationForm(forms.Form):
     label_name = forms.CharField()
 
     train_ratio = forms.ChoiceField(choices=Class_Train_Ratio)
-    # def __init__(self, targetChoices, *args, **kwargs):
-    #     super(ClassificationForm, self).__init__(*args, **kwargs)
-    #     targetTuple = {x[:2]:x for x in targetChoices}
-    #     print(targetTuple)
-    #     self.target_column = forms.ChoiceField(choices=targetChoices)
-
-
 
     # target_column = forms.CharField(widget=forms.TextInput, required=True)
 
-class DelCacheForm(forms.Form):
-    delete_cache = forms.BooleanField(required=True)
+# class DelCacheForm(forms.Form):
+#     delete_cache = forms.BooleanField(required=True)
+
+class UploadFileForm(forms.Form):
+    title = forms.CharField(max_length=50)
+    file = forms.FileField(widget=forms.FileInput(attrs={'accept': ".csv"}))

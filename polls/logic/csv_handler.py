@@ -1,6 +1,8 @@
 import csv
 import pandas as pd
 import numpy as np
+from django.core.files import File
+
 from polls.models import DataFrameModel
 import os
 
@@ -41,6 +43,11 @@ def read_csv_file(path):
     df = pd.read_csv(path)
     df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
     return df
+
+def save_upload_file(file, path):
+    new_file = open(path, "wb+")
+    new_file.write(file.read())
+    new_file.close()
 
 
 def drop_na(df):
