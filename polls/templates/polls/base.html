@@ -20,12 +20,30 @@
 
     </head>
     <body>
+    {#  top level nav bar #}
 
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+             <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
+
+                   <ul class="navbar-nav mr-auto">
+                       <li class="nav-item active"><a href="{% url 'polls:home' %}" class="nav-link">Home<span class="sr-only">(current)</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'polls:about' %}">About</a></li>
+
+                   </ul>
+                 {#  right algined #}
+                 <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+                      <li class="nav-item active">
+                          <input class="btn btn-danger navbar-btn" type="button" value="refresh" onclick="window.location.reload()"/>
+                      </li>
+{#                      <li class="nav-item mx-2">#}
+{#                          <button  class="btn btn-danger navbar-b" type="button" onclick="window.history.go(-1);window.location.reload()">Go Back</button>#}
+{#                      </li>#}
+                </ul>
+             </div>
+        </nav>
         {#Top_level Nav_bar here!#}
-        <ul class="nav_bar">
-          <li class="nav_content"><a href="{% url 'polls:home' %}" class="active">Home</a></li>
-          <li class="nav_content"><a href="{% url 'polls:about' %}">About</a></li>
-        </ul>
+
 
         {#Content Here!#}
         {% block content %}{% endblock %}
