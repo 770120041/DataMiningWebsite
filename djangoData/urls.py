@@ -7,5 +7,4 @@ urlpatterns = [
     path('', RedirectView.as_view(url='/polls/', permanent=True)),
     path('polls/', include(('polls.urls', 'polls'), namespace='polls')),
     path('admin/', admin.site.urls),
-
 ]

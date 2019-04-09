@@ -6,13 +6,14 @@ from polls.views import *
 
 # name is used for a particular mapping(a line in urlpatterns)
 
-
+# data
 CSV_PATH = {
         "cweka": "polls\\data\\1_3cweka.csv",
         "chinese_stock": "polls\\data\\2_chinese_stock.csv",
         "license_plate": "polls\\data\\3_license_plate.csv",
         "hapiness": "polls\\data\\4_hapiness.csv"
     }
+
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -35,10 +36,19 @@ urlpatterns += [
     path('delete_all_local_cache/', views.delete_local_cache, name='del_local_cache')
 ]
 
+
+# upload csv file
 urlpatterns += [
     path('upload/', views.upload_file, name='upload_url')
 ]
+
 urlpatterns += [
     path('success/',views.success_url, name='op_success'),
     path('fail_upload/', views.fail_upload, name = 'fail_uload')
+]
+
+
+# docs
+urlpatterns += [
+    path('docs/<slug:doc_name>/',DocsView.as_view(),name='view_docs')
 ]

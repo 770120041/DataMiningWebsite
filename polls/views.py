@@ -13,6 +13,7 @@ TMPDIRPATH = "\\polls\\tmp\\"
 DATADIRPATH = "\\polls\\data\\"
 ROOTPATH = get_root_path()
 
+
 class TableView(View):
     """
         This class is used for pre-processing and method selection of table
@@ -116,7 +117,9 @@ class ClassificationView(View):
 
 
 class CFViewResult(View):
-
+    """
+        This view is used to show classification result
+    """
     TEMPLATE_NAME = 'polls/logic/classfication_result.html'
     def get(self, request,table_descprition):
         train_stat = request.session['cfstat']
@@ -142,6 +145,15 @@ class ClusteringView(View):
     def post(self, request):
         pass
 
+
+class DocsView(View):
+    """
+    class for showing docs
+    """
+    TEMPLATE_ROOT = 'polls/docs/'
+    def get(self,request,doc_name):
+
+        return render(request,self.TEMPLATE_ROOT+doc_name+".html")
 
 
 def home(request):

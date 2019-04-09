@@ -14,8 +14,8 @@ let logis_params_description_text =
         "*** penalty : str, ‘l1’ or ‘l2’, default: ‘l2’<br>" +
         "*** max_iter : int, default: 100<br>" +
         "*** tol : float, default: 1e-4(Tolerance for stopping criteria.)<br>"  +
-        "<br>More details can be found at " +
-        "<a target=\"_blank\" href=\"https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression\">Official Document</a>" +
+        "<br>More details can be found  " +
+         "<a target=\"_blank\" href=\"/polls/docs/LOGISTIC_doc/\">Here</a>" +
         "</span> \n";
 
 let knn_params_description_text =
@@ -24,9 +24,9 @@ let knn_params_description_text =
         "*** n_neighbors : int, optional (default = 5)<br>" +
         "*** weights : str or callable, optional (default = ‘uniform’)<br>" +
         "*** leaf_size : int, optional (default = 30)<br>"  +
-        "<br>More details can be found at " +
-        "<a target=\"_blank\" href=\"https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html\">Official Document</a>" +
-        "</span> \n";
+        "<br>More details can be found  " +
+     "<a target=\"_blank\" href=\"/polls/docs/KNN_doc/\">Here</a>" +
+    "</span> \n";
 
 let SVC_params_description_text =
    params_description_head +
@@ -35,19 +35,10 @@ let SVC_params_description_text =
         "*** kernel : string, optional (default=’rbf’)<br>" +
         "*** degree : int, optional (default=3)<br>"  +
         "*** tol : float, optional (default=1e-3)<br>" +
-        "<br>More details can be found at " +
-        "<a target=\"_blank\" href=\"https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html\">Official Document</a>" +
-        "</span> \n";
+        "<br>More details can be found  " +
+     "<a target=\"_blank\" href=\"/polls/docs/SVC_doc/\">Here</a>" +
+    "</span> \n";
 
-let GBC_params_description_text =
-   params_description_head +
-        "*  GradientBoostingClassifier parameters:<br>" +
-        "*** loss : {‘deviance’, ‘exponential’}, optional (default=’deviance’)<br>" +
-        "*** learning_rate : float, optional (default=0.1)<br>" +
-        "*** n_estimators : int (default=100)<br>"  +
-        "<br>More details can be found at " +
-        "<a target=\"_blank\" href=\"https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html\">Official Document</a>" +
-        "</span> \n";
 
 let DT_params_description_text =
    params_description_head +
@@ -55,8 +46,8 @@ let DT_params_description_text =
         "*** criterion : string, optional (default=”gini”)<br>" +
         "*** splitter : string, optional (default=”best”)<br>" +
         "*** max_depth : int or None, optional (default=None)<br>"  +
-        "<br>More details can be found at " +
-        "<a target=\"_blank\" href=\"https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html\">Official Document</a>" +
+        "<br>More details can be found  " +
+        "<a target=\"_blank\" href=\"/polls/docs/DT_doc/\">Here</a>" +
         "</span> \n";
 
 let RF_params_description_text =
@@ -65,9 +56,9 @@ let RF_params_description_text =
         "*** n_estimators : integer, optional (default=10)<br>" +
         "*** criterion : string, optional (default=”gini”)<br>" +
         "*** max_depth : integer or None, optional (default=None)<br>"  +
-        "<br>More details can be found at " +
-        "<a target=\"_blank\" href=\"https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html\">Official Document</a>" +
-        "</span> \n";
+        "<br>More details can be found  " +
+         "<a target=\"_blank\" href=\"/polls/docs/RF_doc/\">Here</a>" +
+    "</span> \n";
 
 let MLPC_params_description_text =
    params_description_head +
@@ -75,17 +66,17 @@ let MLPC_params_description_text =
         "*** hidden_layer_sizes : tuple, length = n_layers - 2, default (100,)<br>" +
         "*** activation : {‘identity’, ‘logistic’, ‘tanh’, ‘relu’}, default ‘relu’<br>" +
         "*** solver : {‘lbfgs’, ‘sgd’, ‘adam’}, default ‘adam’<br>"  +
-        "<br>More details can be found at " +
-        "<a target=\"_blank\" href=\"https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html\">Official Document</a>" +
-        "</span> \n";
+        "<br>More details can be found " +
+         "<a target=\"_blank\" href=\"/polls/docs/MLPC_doc/\">Here</a>" +
+    "</span> \n";
 
 let GNB_params_description_text = params_description_head +
         "*  GaussianNB parameters:<br>" +
         "*** priors : array-like, shape (n_classes,)<br>" +
         "*** var_smoothing : float, optional (default=1e-9)<br>" +
-        "<br>More details can be found at " +
-        "<a target=\"_blank\" href=\"https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.GaussianNB.html\">Official Document</a>" +
-        "</span> \n";
+        "<br>More details can be found  " +
+         "<a target=\"_blank\" href=\"/polls/docs/GNB_doc/\">Here</a>" +
+    "</span> \n";
 
 let logistic_init_param = "{\"penalty\":\"l1\", \"max_iter\":100}";
 let knn_init_param = "{\"n_neighbors\":5}";
