@@ -58,8 +58,8 @@ def do_classification(df_droped_label, X_train, Y_train, X_test, Y_test, classif
     train_score = classifier.score(X_train, Y_train)
     test_score = classifier.score(X_test, Y_test)
 
-    result = {'Classifier': METHODDICT[classifier_name], 'TrainScore': train_score, 'TestScore': test_score,
-                                        'train_time': t_diff}
+    result = {'Classifier': METHODDICT[classifier_name], 'TrainPrecision': train_score, 'TestPrecision': test_score,
+                                        'train_time': str(t_diff)+"s"}
     predict_label = classifier.predict(df_droped_label)
     return predict_label, result
 

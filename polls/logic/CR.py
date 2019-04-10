@@ -59,7 +59,7 @@ def MyClustering(df, cluster_method, param=""):
     t_end = time.process_time()
     t_diff = t_end-t_start
     stat = {'Clusatering_Algorithm': cluster_method,
-              'train_time': t_diff}
+              'train_time': str(t_diff)+"s"}
 
     if hasattr(cur_cluster_method, 'labels_'):
         y_pred = cur_cluster_method.labels_.astype(np.int)

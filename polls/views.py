@@ -60,12 +60,12 @@ class TableView(View):
             save_csv_file(df, self.root_path + TMPDIRPATH + new_csv_store_name)
 
             # save this model to database
-            save_csv_model(new_csv_description, new_csv_store_name)
+            # save_csv_model(new_csv_description, new_csv_store_name)
 
             print(form.cleaned_data['method_selection'])
 
              # redirect to specific method
-            return redirect("/polls/" + form.cleaned_data['method_selection'] + "/" + new_csv_description + "/")
+            return redirect("/polls/" + form.cleaned_data['method_selection'] + "/" + new_csv_store_name.replace(".csv","") + "/")
 
         # in case form not valid
         context = {
@@ -93,39 +93,39 @@ class ClassificationView(View):
     form_inital = {"Classifier": "LG", "train_ratio" : "0.7"}
 
 
-    def get(self, request, table_descprition):
-        dfmodel = get_object_or_404(DataFrameModel, df_description=table_descprition)
-        df = read_csv_file(self.root_path + TMPDIRPATH + dfmodel.df_stroed_name)
+    def get(self, request, new_csv_store_name):
+        # dfmodel = get_object_or_404(DataFrameModel, df_description=new_csv_store_name)
+        df = read_csv_file(self.root_path + TMPDIRPATH + new_csv_store_name+".csv")
 
         form = ClassificationForm(initial=self.form_inital)
         context ={
             "form": form,
-            "tableName": table_descprition,
+            "tableName": new_csv_store_name,
             "table": df_to_html(df)
         }
         return render(request, self.TEMPLATE_NAME, context=context)
 
     # rendering post and redirect to showing result
-    def post(self, request, table_descprition):
-        dfmodel = get_object_or_404(DataFrameModel, df_description=table_descprition)
-        df = read_csv_file(self.root_path + TMPDIRPATH + dfmodel.df_stroed_name)
+    def post(self, request, new_csv_store_name):
+        # dfmodel = get_object_or_404(DataFrameModel, df_description=new_csv_store_name)
+        df = read_csv_file(self.root_path + TMPDIRPATH + new_csv_store_name+".csv")
         form = ClassificationForm(request.POST)
         if form.is_valid():
             print(form.cleaned_data["classification_parameters"])
             # param = form.cleaned_data
             new_csv, train_stat = MyClassification(df, form.cleaned_data["label_name"], form.cleaned_data["Classifier"],form.cleaned_data["train_ratio"], param=form.cleaned_data["classification_parameters"])
-            new_csv_description = dfmodel.df_description + "-result"
-            new_csv_store_name = dfmodel.df_stroed_name.replace("_pre.csv", "_result.csv")
+            new_csv_description = new_csv_store_name.replace("_pre", "_result") + "-result"
+            new_csv_store_name = new_csv_store_name.replace("_pre", "_result.csv")
             save_csv_file(new_csv, self.root_path + TMPDIRPATH + new_csv_store_name)
             # save this model to database
-            save_csv_model(new_csv_description, new_csv_store_name)
+            # save_csv_model(new_csv_description, new_csv_store_name)
             request.session['cfstat'] = train_stat
-            return redirect('/polls/CF_result/'+new_csv_description+"/")
+            return redirect('/polls/CF_result/'+new_csv_store_name.replace(".csv","")+"/")
 
         # if in this, means that form is invalid
         context = {
             "form": form,
-            "tableName": table_descprition,
+            "tableName": new_csv_store_name,
             "table": df_to_html(df)
         }
         return render(request, self.TEMPLATE_NAME, context=context)
@@ -136,13 +136,13 @@ class CFViewResult(View):
         This view is used to show classification result
     """
     TEMPLATE_NAME = 'polls/logic/classfication_result.html'
-    def get(self, request,table_descprition):
+    def get(self, request,new_csv_store_name):
         train_stat = request.session['cfstat']
 
-        dfmodel = get_object_or_404(DataFrameModel, df_description=table_descprition)
-        df = read_csv_file(ROOTPATH + TMPDIRPATH + dfmodel.df_stroed_name)
+        # dfmodel = get_object_or_404(DataFrameModel, df_description=new_csv_store_name)
+        df = read_csv_file(ROOTPATH + TMPDIRPATH + new_csv_store_name+".csv")
         context = {
-            "tableName": table_descprition,
+            "tableName": new_csv_store_name,
             "table": df_to_html(df),
             "stat" : train_stat
         }
@@ -164,44 +164,43 @@ class ClusteringView(View):
     root_path = get_root_path()
     form_inital = {"ClusterAlgo": "KMeans"}
 
-    def get(self, request, table_descprition):
-        dfmodel = get_object_or_404(DataFrameModel, df_description=table_descprition)
-        df = read_csv_file(self.root_path + TMPDIRPATH + dfmodel.df_stroed_name)
+
+    def get(self, request, new_csv_store_name):
+        df = read_csv_file(self.root_path + TMPDIRPATH + new_csv_store_name + ".csv")
 
         form = ClusteringForm(initial=self.form_inital)
         context = {
             "form": form,
-            "tableName": table_descprition,
+            "tableName": new_csv_store_name,
             "table": df_to_html(df)
         }
         return render(request, self.TEMPLATE_NAME, context=context)
+        # rendering post and redirect to showing result
 
     # rendering post and redirect to showing result
-    def post(self, request, table_descprition):
-        dfmodel = get_object_or_404(DataFrameModel, df_description=table_descprition)
-        df = read_csv_file(self.root_path + TMPDIRPATH + dfmodel.df_stroed_name)
+    def post(self, request, new_csv_store_name):
+        df = read_csv_file(self.root_path + TMPDIRPATH + new_csv_store_name + ".csv")
         form = ClusteringForm(request.POST)
         if form.is_valid():
             print(form.cleaned_data["Cluster_Algo"])
             # param = form.cleaned_data
             new_csv, train_stat = MyClustering(df, form.cleaned_data["Cluster_Algo"],
                                                    param=form.cleaned_data["Clustering_Parameters"])
-            new_csv_description = dfmodel.df_description + "-result"
-            new_csv_store_name = dfmodel.df_stroed_name.replace("_pre.csv", "_result.csv")
+            new_csv_description = new_csv_store_name.replace("_pre", "_result") + "-result"
+            new_csv_store_name = new_csv_store_name.replace("_pre", "_result.csv")
             save_csv_file(new_csv, self.root_path + TMPDIRPATH + new_csv_store_name)
             # save this model to database
-            save_csv_model(new_csv_description, new_csv_store_name)
+            # save_csv_model(new_csv_description, new_csv_store_name)
             request.session['clustering_stat'] = train_stat
-            return redirect('/polls/CR_result/' + new_csv_description + "/")
+            return redirect('/polls/CR_result/' + new_csv_store_name.replace(".csv", "") + "/")
 
         # if in this, means that form is invalid
         context = {
             "form": form,
-            "tableName": table_descprition,
+            "tableName": new_csv_store_name,
             "table": df_to_html(df)
         }
         return render(request, self.TEMPLATE_NAME, context=context)
-
 
 
 class CR_result(View):
@@ -209,13 +208,12 @@ class CR_result(View):
         This view is used to show clustering result
     """
     TEMPLATE_NAME = 'polls/logic/clustering_result.html'
-    def get(self, request,table_descprition):
+    def get(self, request,new_csv_store_name):
         train_stat = request.session['clustering_stat']
 
-        dfmodel = get_object_or_404(DataFrameModel, df_description=table_descprition)
-        df = read_csv_file(ROOTPATH + TMPDIRPATH + dfmodel.df_stroed_name)
+        df = read_csv_file(ROOTPATH + TMPDIRPATH + new_csv_store_name+".csv")
         context = {
-            "tableName": table_descprition,
+            "tableName": new_csv_store_name,
             "table": df_to_html(df),
             "stat" : train_stat
         }

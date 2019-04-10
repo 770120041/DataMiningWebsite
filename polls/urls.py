@@ -27,13 +27,13 @@ urlpatterns += [
 
 # classification
 urlpatterns += [
-    path(r'CF/<slug:table_descprition>/', ClassificationView.as_view(), name='classification'),
-    path(r'CF_result/<slug:table_descprition>/', CFViewResult.as_view(), name='CFresult')
+    path(r'CF/<slug:new_csv_store_name>/', ClassificationView.as_view(), name='classification'),
+    path(r'CF_result/<slug:new_csv_store_name>/', CFViewResult.as_view(), name='CFresult')
 ]
 # clustering
 urlpatterns += [
-    path(r'CR/<slug:table_descprition>/', ClusteringView.as_view(), name='classification'),
-    path(r'CR_result/<slug:table_descprition>/', CR_result.as_view(), name='CFresult')
+    path(r'CR/<slug:new_csv_store_name>/', ClusteringView.as_view(), name='classification'),
+    path(r'CR_result/<slug:new_csv_store_name>/', CR_result.as_view(), name='CFresult')
 ]
 
 urlpatterns += [
