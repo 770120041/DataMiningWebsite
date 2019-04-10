@@ -5,7 +5,7 @@
 
  */
 
-let params_description_head =   "<span>" +
+let class_params_description_head =   "<span>" +
         "*  Classifier is the method used for classification<br>" +
         "*  Lable Name is the name of the label used for training<br>" +
         "*  Train ratio is the Train/Test ratio used for training and testing.<br>"+
@@ -14,7 +14,7 @@ let params_description_head =   "<span>" +
     " to set parameter \"penalty\" to \"l1\",\"max_iter\" to 100 <br><br>";
 
 let logis_params_description_text =
-        params_description_head+
+        class_params_description_head+
         "*   Logistic Regression parameters:<br>" +
         "*** penalty : str, ‘l1’ or ‘l2’, default: ‘l2’<br>" +
         "*** max_iter : int, default: 100<br>" +
@@ -24,7 +24,7 @@ let logis_params_description_text =
         "</span> \n";
 
 let knn_params_description_text =
-   params_description_head +
+   class_params_description_head +
         "*  KNN parameters:<br>" +
         "*** n_neighbors : int, optional (default = 5)<br>" +
         "*** weights : str or callable, optional (default = ‘uniform’)<br>" +
@@ -34,7 +34,7 @@ let knn_params_description_text =
     "</span> \n";
 
 let SVC_params_description_text =
-   params_description_head +
+   class_params_description_head +
         "*  SVC parameters:<br>" +
         "*** C : float, optional (default=1.0)<br>" +
         "*** kernel : string, optional (default=’rbf’)<br>" +
@@ -46,7 +46,7 @@ let SVC_params_description_text =
 
 
 let DT_params_description_text =
-   params_description_head +
+   class_params_description_head +
         "*  DecisionTreeClassifier parameters:<br>" +
         "*** criterion : string, optional (default=”gini”)<br>" +
         "*** splitter : string, optional (default=”best”)<br>" +
@@ -56,7 +56,7 @@ let DT_params_description_text =
         "</span> \n";
 
 let RF_params_description_text =
-   params_description_head +
+   class_params_description_head +
         "*  RandomForestClassifier parameters:<br>" +
         "*** n_estimators : integer, optional (default=10)<br>" +
         "*** criterion : string, optional (default=”gini”)<br>" +
@@ -66,7 +66,7 @@ let RF_params_description_text =
     "</span> \n";
 
 let MLPC_params_description_text =
-   params_description_head +
+   class_params_description_head +
         "*  MLPClassifier parameters:<br>" +
         "*** hidden_layer_sizes : tuple, length = n_layers - 2, default (100,)<br>" +
         "*** activation : {‘identity’, ‘logistic’, ‘tanh’, ‘relu’}, default ‘relu’<br>" +
@@ -75,7 +75,7 @@ let MLPC_params_description_text =
          "<a target=\"_blank\" href=\"/polls/docs/MLPC_doc/\">Here</a>" +
     "</span> \n";
 
-let GNB_params_description_text = params_description_head +
+let GNB_params_description_text = class_params_description_head +
         "*  GaussianNB parameters:<br>" +
         "*** priors : array-like, shape (n_classes,)<br>" +
         "*** var_smoothing : float, optional (default=1e-9)<br>" +
@@ -142,7 +142,24 @@ function ajax_class_change() {
 /*
     Start of clustering Ajax change
  */
-    let KMeans_description_text = "{\"n_clusters\":8}";
+
+let cluster_params_description_head =   "<span>" +
+        "*  Cluster algo is the algorithm used for clustering. <br>"+
+        "*  Parameters can be set in field \"Clustering  parameters\"<br>" +
+    "Example: type in <em>{\"penalty\":\"l1\", \"max_iter\":100}</em> in the field of Classification parameters<br>" +
+    " to set parameter \"penalty\" to \"l1\",\"max_iter\" to 100 <br><br>";
+
+
+    let KMeans_description_text = cluster_params_description_head +
+        "*   KMeans Clustering parameters:<br>" +
+        "*** n_clusters  : int, optional, default: 8<br>" +
+        "*** init  : {‘k-means++’, ‘random’ or an ndarray}<br>" +
+        "*** max_iter  : int, default: 300<br>"  +
+        "<br>More details can be found  " +
+        "<br>More details can be found  " +
+         "<a target=\"_blank\" href=\"/polls/docs/LOGISTIC_doc/\">Here</a>" +
+        "</span> \n";
+
     let MiniBatchKMeans_description_text = "{\"n_clusters\":8}";
     let AffinityPropagation_description_text = "{\"max_iter \":200,\"damping  \":0.5 }";
     let MeanShift_description_text = "{\"bandwidth\":\"None\",\"bin_seeding\":\"True\"}";
@@ -152,14 +169,14 @@ function ajax_class_change() {
     let DBSCAN_description_text = "{\"leaf_size \":30}";
     let Birch_description_text = "{\"threshold \":0.5,\"branching_factor  \":50}";
    let cluster_method_description_dict ={
-        "KMeans": "KMeans_description_text",
-        "MiniBatchKMeans": "MiniBatchKMeans_description_text",
-        "AffinityPropagation": "AffinityPropagation_description_text",
-        "MeanShift": "MeanShift_description_text",
-        "SpectralClustering" : "SpectralClustering_description_text",
-        "AgglomerativeClustering" : "AgglomerativeClustering_description_text",
-        "DBSCAN" : "DBSCAN_description_text",
-        "Birch" : "Birch_description_text",
+        "KMeans": KMeans_description_text,
+        "MiniBatchKMeans": MiniBatchKMeans_description_text,
+        "AffinityPropagation": AffinityPropagation_description_text,
+        "MeanShift": MeanShift_description_text,
+        "SpectralClustering" : SpectralClustering_description_text,
+        "AgglomerativeClustering" : AgglomerativeClustering_description_text,
+        "DBSCAN" : DBSCAN_description_text,
+        "Birch" : Birch_description_text,
     };
     let KMeans_init_param = "{\"n_clusters\":8}";
     let MiniBatchKMeans_init_param = "{\"n_clusters\":8}";
@@ -172,21 +189,21 @@ function ajax_class_change() {
     let Birch_init_param = "{\"threshold \":0.5,\"branching_factor  \":50}";
 
     let cluster_method_init_parma ={
-        "KMeans": "KMeans_init_param",
-        "MiniBatchKMeans": "MiniBatchKMeans_init_param",
-        "AffinityPropagation": "AffinityPropagation_init_param",
-        "MeanShift": "MeanShift_init_param",
-        "SpectralClustering" : "SpectralClustering_init_param",
-        "AgglomerativeClustering" : "AgglomerativeClustering_init_param",
-        "DBSCAN" : "DBSCAN_init_param",
-        "Birch" : "Birch_init_param",
+        "KMeans": KMeans_init_param,
+        "MiniBatchKMeans": MiniBatchKMeans_init_param,
+        "AffinityPropagation": AffinityPropagation_init_param,
+        "MeanShift": MeanShift_init_param,
+        "SpectralClustering" : SpectralClustering_init_param,
+        "AgglomerativeClustering" : AgglomerativeClustering_init_param,
+        "DBSCAN" : DBSCAN_init_param,
+        "Birch" : Birch_init_param,
     };
 
 
 
 
 function cluster_description_text(method_name) {
-    // alert(class_method_descripion_dict[method_name])
+    // alert(cluster_method_description_dict[method_name])
     $("#clusterification_parameter_description").wrapInner(cluster_method_description_dict[method_name]);
 }
 function init_cluster_params(method_name){

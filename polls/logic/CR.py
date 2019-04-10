@@ -9,7 +9,7 @@ from sklearn import cluster
 
 
 clustering_algorithms = {
-        'KMmeans': cluster.k_means,
+        'KMeans': cluster.KMeans,
         'MiniBatchKMeans': cluster.MiniBatchKMeans,
         'AffinityPropagation': cluster.affinity_propagation,
         'MeanShift': cluster.MeanShift,
@@ -68,6 +68,6 @@ def MyClustering(df, cluster_method, param=""):
 
     new_df = df.copy(deep=True)
     new_df["clustering_result"] = y_pred
-    return y_pred, stat
+    return new_df, stat
 
 
