@@ -1,0 +1,59 @@
+{% extends 'polls/base.html' %}
+
+{% block content %}
+    {#Base EXCEL NAV HERE#}
+    {% autoescape off %}
+        <div class = "container">
+        <h1 class="text-primary">GaussianNB:</h1>
+            <p class="">Gaussian Naive Bayes (GaussianNB)
+            </p>
+            </p class="">Can perform online updates to model parameters via partial_fit method. For details on algorithm used to update feature means and variance online, see Stanford CS tech report STAN-CS-79-773 by Chan, Golub, and LeVeque:
+            </p>
+            <div>
+                <a class="reference external" href="http://i.stanford.edu/pub/cstr/reports/cs/tr/79/773/CS-TR-79-773.pdf">http://i.stanford.edu/pub/cstr/reports/cs/tr/79/773/CS-TR-79-773.pdf</a>
+            </div>
+        <hr>
+
+
+            <table class="docutils field-list" frame="void" rules="none">
+                <colgroup><col class="field-name">
+                <col class="field-body">
+                </colgroup><tbody valign="top">
+                <tr class="field-odd field"><th class="field-name"><h2 class="text-light  font-weight-bold">Parameters:</h2></th><td class="field-body"><dl class="first last docutils">
+                <dt><strong>priors</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array-like, shape (n_classes,)</span></dt>
+                <dd><p class="first last">Prior probabilities of the classes. If specified the priors are not
+                adjusted according to the data.</p>
+                </dd>
+                <dt><strong>var_smoothing</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float, optional (default=1e-9)</span></dt>
+                <dd><p class="first last">Portion of the largest variance of all features that is added to
+                variances for calculation stability.</p>
+                </dd>
+                </dl>
+                </td>
+                </tr>
+                <tr class="field-even field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+                <dt><strong>class_prior_</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array, shape (n_classes,)</span></dt>
+                <dd><p class="first last">probability of each class.</p>
+                </dd>
+                <dt><strong>class_count_</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array, shape (n_classes,)</span></dt>
+                <dd><p class="first last">number of training samples observed in each class.</p>
+                </dd>
+                <dt><strong>theta_</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array, shape (n_classes, n_features)</span></dt>
+                <dd><p class="first last">mean of each feature per class</p>
+                </dd>
+                <dt><strong>sigma_</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array, shape (n_classes, n_features)</span></dt>
+                <dd><p class="first last">variance of each feature per class</p>
+                </dd>
+                <dt><strong>epsilon_</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+                <dd><p class="first last">absolute additive value to variances</p>
+                </dd>
+                </dl>
+                </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    {% endautoescape %}
+
+{% endblock %}
