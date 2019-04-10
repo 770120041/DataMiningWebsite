@@ -150,7 +150,8 @@ let cluster_params_description_head =   "<span>" +
     " to set parameter \"penalty\" to \"l1\",\"max_iter\" to 100 <br><br>";
 
 
-    let KMeans_description_text = cluster_params_description_head +
+    let KMeans_description_text =
+        cluster_params_description_head +
         "*   KMeans Clustering parameters:<br>" +
         "*** n_clusters  : int, optional, default: 8<br>" +
         "*** init  : {‘k-means++’, ‘random’ or an ndarray}<br>" +
@@ -160,14 +161,69 @@ let cluster_params_description_head =   "<span>" +
          "<a target=\"_blank\" href=\"/polls/docs/LOGISTIC_doc/\">Here</a>" +
         "</span> \n";
 
-    let MiniBatchKMeans_description_text = "{\"n_clusters\":8}";
-    let AffinityPropagation_description_text = "{\"max_iter \":200,\"damping  \":0.5 }";
-    let MeanShift_description_text = "{\"bandwidth\":\"None\",\"bin_seeding\":\"True\"}";
-    let SpectralClustering_description_text = "{\"eigen_solver\"=\"arpack\"," +
-        "\"affinity\"=\"nearest_neighbors\"}";
-    let AgglomerativeClustering_description_text = "{\"linkage=\":\"average\"}";
-    let DBSCAN_description_text = "{\"leaf_size \":30}";
-    let Birch_description_text = "{\"threshold \":0.5,\"branching_factor  \":50}";
+    let MiniBatchKMeans_description_text = cluster_params_description_head +
+        "*   KMeans Clustering parameters:<br>" +
+        "*** n_clusters  : int, optional, default: 8<br>" +
+        "*** init  : {‘k-means++’, ‘random’ or an ndarray}<br>" +
+        "*** max_iter  : int, default: 300<br>"  +
+        "<br>More details can be found  " +
+        "<br>More details can be found  " +
+         "<a target=\"_blank\" href=\"/polls/docs/LOGISTIC_doc/\">Here</a>" +
+        "</span> \n";
+    let AffinityPropagation_description_text =cluster_params_description_head +
+        "*   KMeans Clustering parameters:<br>" +
+        "*** n_clusters  : int, optional, default: 8<br>" +
+        "*** init  : {‘k-means++’, ‘random’ or an ndarray}<br>" +
+        "*** max_iter  : int, default: 300<br>"  +
+        "<br>More details can be found  " +
+        "<br>More details can be found  " +
+         "<a target=\"_blank\" href=\"/polls/docs/LOGISTIC_doc/\">Here</a>" +
+        "</span> \n";
+    let MeanShift_description_text = cluster_params_description_head +
+        "*   KMeans Clustering parameters:<br>" +
+        "*** n_clusters  : int, optional, default: 8<br>" +
+        "*** init  : {‘k-means++’, ‘random’ or an ndarray}<br>" +
+        "*** max_iter  : int, default: 300<br>"  +
+        "<br>More details can be found  " +
+        "<br>More details can be found  " +
+         "<a target=\"_blank\" href=\"/polls/docs/LOGISTIC_doc/\">Here</a>" +
+        "</span> \n";
+    let SpectralClustering_description_text =cluster_params_description_head +
+        "*   KMeans Clustering parameters:<br>" +
+        "*** n_clusters  : int, optional, default: 8<br>" +
+        "*** init  : {‘k-means++’, ‘random’ or an ndarray}<br>" +
+        "*** max_iter  : int, default: 300<br>"  +
+        "<br>More details can be found  " +
+        "<br>More details can be found  " +
+         "<a target=\"_blank\" href=\"/polls/docs/LOGISTIC_doc/\">Here</a>" +
+        "</span> \n";
+    let AgglomerativeClustering_description_text = cluster_params_description_head +
+        "*   KMeans Clustering parameters:<br>" +
+        "*** n_clusters  : int, optional, default: 8<br>" +
+        "*** init  : {‘k-means++’, ‘random’ or an ndarray}<br>" +
+        "*** max_iter  : int, default: 300<br>"  +
+        "<br>More details can be found  " +
+        "<br>More details can be found  " +
+         "<a target=\"_blank\" href=\"/polls/docs/LOGISTIC_doc/\">Here</a>" +
+        "</span> \n";
+    let Birch_description_text = cluster_params_description_head +
+        "*   KMeans Clustering parameters:<br>" +
+        "*** n_clusters  : int, optional, default: 8<br>" +
+        "*** init  : {‘k-means++’, ‘random’ or an ndarray}<br>" +
+        "*** max_iter  : int, default: 300<br>"  +
+        "<br>More details can be found  " +
+        "<br>More details can be found  " +
+         "<a target=\"_blank\" href=\"/polls/docs/LOGISTIC_doc/\">Here</a>" +
+        "</span> \n";
+    let DBSCAN_description_text =cluster_params_description_head +
+        "*   KMeans Clustering parameters:<br>" +
+        "*** n_clusters  : int, optional, default: 8<br>" +
+        "*** init  : {‘k-means++’, ‘random’ or an ndarray}<br>" +
+        "*** max_iter  : int, default: 300<br>"  +
+        "<br>More details can be found  " +
+        "<br>More details can be found  " +
+         "<a target=\"_blank\" href=\"/polls/docs/LOGISTIC_doc/\">Here</a>" +
+        "</span> \n";
    let cluster_method_description_dict ={
         "KMeans": KMeans_description_text,
         "MiniBatchKMeans": MiniBatchKMeans_description_text,
@@ -202,19 +258,19 @@ let cluster_params_description_head =   "<span>" +
 
 
 
-function cluster_description_text(method_name) {
+function get_cluster_description_text(method_name) {
     // alert(cluster_method_description_dict[method_name])
     $("#clusterification_parameter_description").wrapInner(cluster_method_description_dict[method_name]);
 }
 function init_cluster_params(method_name){
-// alert(class_mathod_init_param[method_name])
+// alert(cluster_method_init_parma[method_name])
 //     alert(class_mathod_init_param[method_name])
     $("#id_Clustering_Parameters").text(cluster_method_init_parma[method_name])
 }
 function ajax_cluster_change() {
     let method_name = $('#id_Cluster_Algo').find(":selected").text();
     // alert(method_name);
-    cluster_description_text(method_name);
+    get_cluster_description_text(method_name);
     init_cluster_params(method_name);
 }
 /*
