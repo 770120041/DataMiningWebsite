@@ -30,8 +30,12 @@ urlpatterns += [
     path(r'CF/<slug:table_descprition>/', ClassificationView.as_view(), name='classification'),
     path(r'CF_result/<slug:table_descprition>/', CFViewResult.as_view(), name='CFresult')
 ]
-
 # clustering
+urlpatterns += [
+    path(r'CR/<slug:table_descprition>/', ClusteringView.as_view(), name='classification'),
+    path(r'CR_result/<slug:table_descprition>/', CR_result.as_view(), name='CFresult')
+]
+
 urlpatterns += [
     path('delete_all_local_cache/', views.delete_local_cache, name='del_local_cache')
 ]

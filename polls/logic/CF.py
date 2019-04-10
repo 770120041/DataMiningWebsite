@@ -54,7 +54,7 @@ def do_classification(df_droped_label, X_train, Y_train, X_test, Y_test, classif
     # classifier = classifier_dict[classifier_name]
     classifier.fit(X_train, Y_train)
     t_end = time.process_time()
-    t_diff = t_end - t_start;
+    t_diff = t_end - t_start
     train_score = classifier.score(X_train, Y_train)
     test_score = classifier.score(X_test, Y_test)
 

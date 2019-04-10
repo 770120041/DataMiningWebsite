@@ -5,6 +5,7 @@ from django.core.validators import FileExtensionValidator
 
 
 from polls.forms import  *
+from polls.logic.CR import MyClustering
 from polls.models import *
 
 from polls.logic import *
@@ -13,6 +14,10 @@ TMPDIRPATH = "\\polls\\tmp\\"
 DATADIRPATH = "\\polls\\data\\"
 ROOTPATH = get_root_path()
 
+"""
+    Section:    
+        Preprocess data and model selection
+"""
 
 class TableView(View):
     """
@@ -24,6 +29,7 @@ class TableView(View):
     form_inital = {"drop_missing": True, "digit_to_char": True, "Classifier": "CF"}
     root_path = get_root_path()
 
+    # param is table name
     def get(self, request, slug):
         dfmodel = get_object_or_404(DataFrameModel, df_description=slug)
         df = read_csv_file(self.root_path + DATADIRPATH + dfmodel.df_stroed_name)
@@ -35,6 +41,7 @@ class TableView(View):
         }
         return render(request, self.TEMPLATE_NAME, context=context)
 
+    # submit form
     def post(self, request, slug):
 
         dfmodel = get_object_or_404(DataFrameModel, df_description=slug)
@@ -57,7 +64,7 @@ class TableView(View):
 
             print(form.cleaned_data['method_selection'])
 
-             # redirect to classification method
+             # redirect to specific method
             return redirect("/polls/" + form.cleaned_data['method_selection'] + "/" + new_csv_description + "/")
 
         # in case form not valid
@@ -68,7 +75,15 @@ class TableView(View):
         }
         return render(request, self.TEMPLATE_NAME, context=context)
 
+"""
+    End Section
+"""
 
+
+"""
+    Section:
+        Classification and showing its result
+"""
 class ClassificationView(View):
     """
         This view is used for classification parameters seting
@@ -133,19 +148,86 @@ class CFViewResult(View):
         }
         return render(request, self.TEMPLATE_NAME, context=context)
 
+"""
+    End Section
+"""
 
+
+"""
+    Section:
+        Clustering and show its result
+"""
 
 
 class ClusteringView(View):
     TEMPLATE_NAME = 'polls/logic/clustering.html'
+    root_path = get_root_path()
+    form_inital = {"ClusterAlgo": "KMeans"}
 
     def get(self, request, table_descprition):
-        return HttpResponse(table_descprition)
+        dfmodel = get_object_or_404(DataFrameModel, df_description=table_descprition)
+        df = read_csv_file(self.root_path + TMPDIRPATH + dfmodel.df_stroed_name)
 
-    def post(self, request):
-        pass
+        form = ClusteringForm(initial=self.form_inital)
+        context = {
+            "form": form,
+            "tableName": table_descprition,
+            "table": df_to_html(df)
+        }
+        return render(request, self.TEMPLATE_NAME, context=context)
+
+    # rendering post and redirect to showing result
+    def post(self, request, table_descprition):
+        dfmodel = get_object_or_404(DataFrameModel, df_description=table_descprition)
+        df = read_csv_file(self.root_path + TMPDIRPATH + dfmodel.df_stroed_name)
+        form = ClusteringForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data["Cluster_Algo"])
+            # param = form.cleaned_data
+            new_csv, train_stat = MyClustering(df, form.cleaned_data["Cluster_Algo"],
+                                                   param=form.cleaned_data["Clustering_Parameters"])
+            new_csv_description = dfmodel.df_description + "-result"
+            new_csv_store_name = dfmodel.df_stroed_name.replace("_pre.csv", "_result.csv")
+            save_csv_file(new_csv, self.root_path + TMPDIRPATH + new_csv_store_name)
+            # save this model to database
+            save_csv_model(new_csv_description, new_csv_store_name)
+            request.session['clustering_stat'] = train_stat
+            return redirect('/polls/CR_result/' + new_csv_description + "/")
+
+        # if in this, means that form is invalid
+        context = {
+            "form": form,
+            "tableName": table_descprition,
+            "table": df_to_html(df)
+        }
+        return render(request, self.TEMPLATE_NAME, context=context)
 
 
+
+class CR_result(View):
+    """
+        This view is used to show clustering result
+    """
+    TEMPLATE_NAME = 'polls/logic/clustering_result.html'
+    def get(self, request,table_descprition):
+        train_stat = request.session['clustering_stat']
+
+        dfmodel = get_object_or_404(DataFrameModel, df_description=table_descprition)
+        df = read_csv_file(ROOTPATH + TMPDIRPATH + dfmodel.df_stroed_name)
+        context = {
+            "tableName": table_descprition,
+            "table": df_to_html(df),
+            "stat" : train_stat
+        }
+        return render(request, self.TEMPLATE_NAME, context=context)
+
+"""
+    End Section
+"""
+
+"""
+    Section: showing a specific doc
+"""
 class DocsView(View):
     """
     class for showing docs
@@ -154,6 +236,10 @@ class DocsView(View):
     def get(self,request,doc_name):
 
         return render(request,self.TEMPLATE_ROOT+doc_name+".html")
+
+"""
+    End Section
+"""
 
 
 def home(request):

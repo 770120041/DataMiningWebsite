@@ -1,5 +1,10 @@
 
 
+/*
+    Classification description text and Ajax change function
+
+ */
+
 let params_description_head =   "<span>" +
         "*  Classifier is the method used for classification<br>" +
         "*  Lable Name is the name of the label used for training<br>" +
@@ -87,7 +92,7 @@ let RF_init_param =  "{\"n_estimators\":10, \"criterion\":\"gini\"}";
 let MLPC_init_param = "{\"activation\":\"relu\"}";
 let GNB_init_param = "{\"var_smoothing\":1e-9}";
 
-   let method_init_parma_dict = {
+   let class_mathod_init_param = {
              'LogisticRegression': logistic_init_param,
              "KNeighborsClassifier": knn_init_param,
              "SVC": SVC_init_param,
@@ -99,7 +104,7 @@ let GNB_init_param = "{\"var_smoothing\":1e-9}";
         };
 
 
-    let method_description_dict = {
+    let class_method_descripion_dict = {
              'LogisticRegression': logis_params_description_text,
              "KNeighborsClassifier": knn_params_description_text,
              "SVC": SVC_params_description_text,
@@ -111,13 +116,13 @@ let GNB_init_param = "{\"var_smoothing\":1e-9}";
         };
 
 function class_description_text(method_name) {
-    // alert(method_description_dict[method_name])
-    $("#classification_parameter_description").wrapInner(method_description_dict[method_name]);
+    // alert(class_method_descripion_dict[method_name])
+    $("#classification_parameter_description").wrapInner(class_method_descripion_dict[method_name]);
 }
 function init_classification_parameters(method_name){
-// alert(method_init_parma_dict[method_name])
-//     alert(method_init_parma_dict[method_name])
-    $("#id_classification_parameters").text(method_init_parma_dict[method_name])
+// alert(class_mathod_init_param[method_name])
+//     alert(class_mathod_init_param[method_name])
+    $("#id_classification_parameters").text(class_mathod_init_param[method_name])
 }
 
 
@@ -127,3 +132,75 @@ function ajax_class_change() {
     class_description_text(method_name);
     init_classification_parameters(method_name);
 }
+
+/*
+    End of Classification
+ */
+
+
+
+/*
+    Start of clustering Ajax change
+ */
+    let KMeans_description_text = "{\"n_clusters\":8}";
+    let MiniBatchKMeans_description_text = "{\"n_clusters\":8}";
+    let AffinityPropagation_description_text = "{\"max_iter \":200,\"damping  \":0.5 }";
+    let MeanShift_description_text = "{\"bandwidth\":\"None\",\"bin_seeding\":\"True\"}";
+    let SpectralClustering_description_text = "{\"eigen_solver\"=\"arpack\"," +
+        "\"affinity\"=\"nearest_neighbors\"}";
+    let AgglomerativeClustering_description_text = "{\"linkage=\":\"average\"}";
+    let DBSCAN_description_text = "{\"leaf_size \":30}";
+    let Birch_description_text = "{\"threshold \":0.5,\"branching_factor  \":50}";
+   let cluster_method_description_dict ={
+        "KMeans": "KMeans_description_text",
+        "MiniBatchKMeans": "MiniBatchKMeans_description_text",
+        "AffinityPropagation": "AffinityPropagation_description_text",
+        "MeanShift": "MeanShift_description_text",
+        "SpectralClustering" : "SpectralClustering_description_text",
+        "AgglomerativeClustering" : "AgglomerativeClustering_description_text",
+        "DBSCAN" : "DBSCAN_description_text",
+        "Birch" : "Birch_description_text",
+    };
+    let KMeans_init_param = "{\"n_clusters\":8}";
+    let MiniBatchKMeans_init_param = "{\"n_clusters\":8}";
+    let AffinityPropagation_init_param = "{\"max_iter \":200,\"damping  \":0.5 }";
+    let MeanShift_init_param = "{\"bandwidth\":\"None\",\"bin_seeding\":\"True\"}";
+    let SpectralClustering_init_param = "{\"eigen_solver\"=\"arpack\"," +
+        "\"affinity\"=\"nearest_neighbors\"}";
+    let AgglomerativeClustering_init_param = "{\"linkage=\":\"average\"}";
+    let DBSCAN_init_param = "{\"leaf_size \":30}";
+    let Birch_init_param = "{\"threshold \":0.5,\"branching_factor  \":50}";
+
+    let cluster_method_init_parma ={
+        "KMeans": "KMeans_init_param",
+        "MiniBatchKMeans": "MiniBatchKMeans_init_param",
+        "AffinityPropagation": "AffinityPropagation_init_param",
+        "MeanShift": "MeanShift_init_param",
+        "SpectralClustering" : "SpectralClustering_init_param",
+        "AgglomerativeClustering" : "AgglomerativeClustering_init_param",
+        "DBSCAN" : "DBSCAN_init_param",
+        "Birch" : "Birch_init_param",
+    };
+
+
+
+
+function cluster_description_text(method_name) {
+    // alert(class_method_descripion_dict[method_name])
+    $("#clusterification_parameter_description").wrapInner(cluster_method_description_dict[method_name]);
+}
+function init_cluster_params(method_name){
+// alert(class_mathod_init_param[method_name])
+//     alert(class_mathod_init_param[method_name])
+    $("#id_Clustering_Parameters").text(cluster_method_init_parma[method_name])
+}
+function ajax_cluster_change() {
+    let method_name = $('#id_Cluster_Algo').find(":selected").text();
+    // alert(method_name);
+    cluster_description_text(method_name);
+    init_cluster_params(method_name);
+}
+/*
+
+    Clustring parmas
+ */

@@ -1,0 +1,45 @@
+{% extends 'polls/base.html' %}
+{% block title %} Classification {% endblock %}
+{% block content %}
+
+    <div class="chosen-container-active">
+        <p class="h1 text-center border">{{ tableName }}</p>
+    </div>
+
+    <div class="container">
+        <table class="table table-green text-center">
+            {% for key,value in stat.items %}
+           <tbody>
+            <tr>
+                <td>
+                    {{ key }}
+                </td>
+                <td>
+                    {{ value }}
+                </td>
+            </tr>
+           </tbody>
+            {% endfor %}
+        </table>
+    </div>
+
+
+    <div class="container-fluid">
+        {% autoescape off %}
+             {{ table }}
+        {% endautoescape %}
+    </div>
+
+
+
+
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+    {# Initial here#}
+    cluster_description_text("KMeans");
+     {#$("#classification_parameter_description span").append("first method");#}
+    init_cluster_params("KMeans");
+</script>
+{% endblock %}

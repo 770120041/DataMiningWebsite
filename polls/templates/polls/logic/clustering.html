@@ -1,31 +1,47 @@
 {% extends 'polls/base.html' %}
-{% block title %} Clustering {% endblock %}
+{% block title %} Classification {% endblock %}
 {% block content %}
+
     <div class="chosen-container-active">
         <p class="h1 text-center border">{{ tableName }}</p>
     </div>
 
     <div class="container">
         <form method="post" action="">
+
             {% csrf_token %}
 
             {% for hidden_field in form.hidden_fields %}
             {{ hidden_field }}
             {% endfor %}
 
-            {% for field in form.visible_fields %}
-                <div class="form-group">
-                    {{ field.label_tag }}
-                    {{ field }}
-                    {% if field.help_text %}
-                    <small class="form-text text-muted">{{ field.help_text }}</small>
-                    {% endif %}
+
+            {#calling ajax checks are hard_coded in forms.py#}
+            <div class="row">
+                 <div class="col-sm-5">
+                            {% for field in form.visible_fields %}
+                        <div class="form-group">
+                            {{ field.label_tag }}<br>
+                            {{ field }}
+                            {% if field.help_text %}
+                            <small class="form-text text-muted">{{ field.label_tag }}</small>
+                            {% endif %}
+                        <br>
+                        </div>
+
+                    {% endfor %}
+                 </div>
+                <div>
+                    <h3> Parameters Descrption:</h3>
+                         <small id="clusterification_parameter_description"><span></span></small>
                 </div>
-            {% endfor %}
+            </div>
+
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
+    <br>
 
 
     <div class="container-fluid">
@@ -33,4 +49,17 @@
              {{ table }}
         {% endautoescape %}
     </div>
+
+
+
+
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+    ajax_cluster_change()
+    {# Initial here#}
+     {#$("#classification_parameter_description span").append("first method");#}
+    {#init_classification_parameters("LogisticRegression");#}
+</script>
 {% endblock %}

@@ -26,7 +26,7 @@ class PreprocessForm(forms.Form):
 
 
 class ClassificationForm(forms.Form):
-    method_dict = {
+    classfication_method_dict = {
         "LG": 'LogisticRegression',
         "KN": "KNeighborsClassifier",
         "SV": "SVC",
@@ -48,7 +48,7 @@ class ClassificationForm(forms.Form):
         "0.9": "0.9"
     }
     Class_Train_Ratio = ((k,v) for k,v in dict_train_raito.items())
-    Class_method_Choice = ((k, v) for k, v in method_dict.items())
+    Class_method_Choice = ((k, v) for k, v in classfication_method_dict.items())
     Classifier = forms.ChoiceField(choices=Class_method_Choice,
                                    widget=forms.Select(attrs={'onchange': 'ajax_class_change();'})
                                    )
@@ -61,6 +61,28 @@ class ClassificationForm(forms.Form):
 
 # class DelCacheForm(forms.Form):
 #     delete_cache = forms.BooleanField(required=True)
+
+class ClusteringForm(forms.Form):
+    clustering_method_dict = {
+        "KMS": 'KMeans',
+        "MBKM": "MiniBatchKMeans",
+        "AFP": "AffinityPropagation",
+        # "GB": "GradientBoostingClassifier",
+        "MSF": "MeanShift",
+        "SPECC":"SpectralClustering",
+        "AGC":"AgglomerativeClustering",
+        "DBSCAN":"DBSCAN",
+        "BRC":"Birch"
+    }
+
+    cluster_method_choice = ((k, v) for k, v in clustering_method_dict.items())
+    Cluster_Algo = forms.ChoiceField(choices=cluster_method_choice,
+                                   widget=forms.Select(attrs={'onchange': 'ajax_cluster_change();'})
+                                   )
+    Clustering_Parameters = forms.CharField(widget=forms.Textarea, required=False)
+
+
+
 
 class UploadFileForm(forms.Form):
     title = forms.CharField(max_length=50)
