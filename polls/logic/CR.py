@@ -11,12 +11,12 @@ from sklearn import cluster
 clustering_algorithms = {
         'KMeans': cluster.KMeans,
         'MiniBatchKMeans': cluster.MiniBatchKMeans,
-        'AffinityPropagation': cluster.affinity_propagation,
+        'AffinityPropagation': cluster.AffinityPropagation,
         'MeanShift': cluster.MeanShift,
-        'SpectralClustering': cluster.SpectralBiclustering,
+        'SpectralClustering': cluster.SpectralClustering,
         'AgglomerativeClustering': cluster.AgglomerativeClustering,
-        'DBSCAN': cluster.dbscan,
-        'Birch': cluster.birch,
+        'DBSCAN': cluster.DBSCAN,
+        'Birch': cluster.Birch,
 }
 
 clustering_method_name = {
@@ -36,7 +36,7 @@ def MyClustering(df, cluster_method, param=""):
 
     t_start = time.process_time()
     param_literal = json.loads(param)
-    print(type(param_literal))
+    print(param_literal)
     # the cluter method and its param
     cur_cluster_method = clustering_algorithms[clustering_method_name[cluster_method]](**param_literal)
 

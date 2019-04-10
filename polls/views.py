@@ -237,7 +237,6 @@ class DocsView(View):
         if method == "CF":
             return render(request,self.TEMPLATE_ROOT+"classification/"+doc_name+".html")
         elif method == "CR":
-            print(doc_name)
             return render(request,self.TEMPLATE_ROOT+"cluster/"+doc_name+".html")
 
 """

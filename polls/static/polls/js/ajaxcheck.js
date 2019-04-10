@@ -228,13 +228,13 @@ let cluster_params_description_head =   "<span>" +
     };
     let KMeans_init_param = "{\"n_clusters\":8}";
     let MiniBatchKMeans_init_param = "{\"n_clusters\":8}";
-    let AffinityPropagation_init_param = "{\"max_iter \":200,\"damping  \":0.5 }";
-    let MeanShift_init_param = "{\"bandwidth\":\"None\",\"bin_seeding\":\"True\"}";
-    let SpectralClustering_init_param = "{\"eigen_solver\"=\"arpack\"," +
-        "\"affinity\"=\"nearest_neighbors\"}";
-    let AgglomerativeClustering_init_param = "{\"linkage=\":\"average\"}";
-    let DBSCAN_init_param = "{\"leaf_size \":30}";
-    let Birch_init_param = "{\"threshold \":0.5,\"branching_factor  \":50}";
+    let AffinityPropagation_init_param = "{\"convergence_iter\":15,\"damping\":0.5 }";
+    let MeanShift_init_param = "{\"bandwidth\":2,\"bin_seeding\":\"True\"}";
+    let SpectralClustering_init_param = "{\"eigen_solver\":\"arpack\"," +
+        "\"affinity\":\"nearest_neighbors\"}";
+    let AgglomerativeClustering_init_param = "{\"linkage\":\"average\"}";
+    let DBSCAN_init_param = "{\"eps\":3,\"leaf_size\":30}";
+    let Birch_init_param = "{\"threshold\":0.5,\"branching_factor\":50}";
 
     let cluster_method_init_parma ={
         "KMeans": KMeans_init_param,
