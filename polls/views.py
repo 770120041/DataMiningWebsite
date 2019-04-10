@@ -233,9 +233,12 @@ class DocsView(View):
     class for showing docs
     """
     TEMPLATE_ROOT = 'polls/docs/'
-    def get(self,request,doc_name):
-
-        return render(request,self.TEMPLATE_ROOT+doc_name+".html")
+    def get(self,request,method,doc_name):
+        if method == "CF":
+            return render(request,self.TEMPLATE_ROOT+"classification/"+doc_name+".html")
+        elif method == "CR":
+            print(doc_name)
+            return render(request,self.TEMPLATE_ROOT+"cluster/"+doc_name+".html")
 
 """
     End Section

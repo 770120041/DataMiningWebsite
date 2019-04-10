@@ -1,0 +1,114 @@
+{% extends 'polls/base.html' %}
+
+{% block content %}
+    {#Base EXCEL NAV HERE#}
+    {% autoescape off %}
+        <div class = "container">
+        <h1 class="text-primary">SpectralClustering:</h1>
+            <p class="">Apply clustering to a projection to the normalized laplacian.
+            </p>
+            <p class="">In practice Spectral Clustering is very useful when the structure of the individual clusters is highly non-convex or more generally when a measure of the center and spread of the cluster is not a suitable description of the complete cluster. For instance when clusters are nested circles on the 2D plan.
+            </p>
+            <p class="">If affinity is the adjacency matrix of a graph, this method can be used to find normalized graph cuts.
+            </p>
+            <p>When calling <code class="docutils literal"><span class="pre">fit</span></code>, an affinity matrix is constructed using either
+kernel function such the Gaussian (aka RBF) kernel of the euclidean
+distanced <code class="docutils literal"><span class="pre">d(X,</span> <span class="pre">X)</span></code>:</p>
+            <div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">gamma</span> <span class="o">*</span> <span class="n">d</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">X</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+            <p>or a k-nearest neighbors connectivity matrix.</p>
+            <p>Alternatively, using <code class="docutils literal"><span class="pre">precomputed</span></code>, a user-provided affinity
+matrix can be used.</p>
+            <hr>
+
+
+           <table class="docutils field-list" frame="void" rules="none">
+            <colgroup><col class="field-name">
+            <col class="field-body">
+            </colgroup><tbody valign="top">
+             <tr class="field-odd field"><th class="field-name"><h2 class="text-light  font-weight-bold">Parameters:</h2></th><td class="field-body"><dl class="first docutils">
+            <dt><strong>n_clusters</strong> <span class="classifier-delimiter">:</span> <span class="classifier">integer, optional</span></dt>
+            <dd><p class="first last">The dimension of the projection subspace.</p>
+            </dd>
+            <dt><strong>eigen_solver</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{None, ‘arpack’, ‘lobpcg’, or ‘amg’}</span></dt>
+            <dd><p class="first last">The eigenvalue decomposition strategy to use. AMG requires pyamg
+            to be installed. It can be faster on very large, sparse problems,
+            but may also lead to instabilities</p>
+            </dd>
+            <dt><strong>random_state</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, RandomState instance or None (default)</span></dt>
+            <dd><p class="first last">A pseudo random number generator used for the initialization of the
+            lobpcg eigen vectors decomposition when eigen_solver == ‘amg’ and by
+            the K-Means initialization. Use an int to make the randomness
+            deterministic.
+            See <a class="reference internal" href="../../glossary.html#term-random-state"><span class="xref std std-term">Glossary</span></a>.</p>
+            </dd>
+            <dt><strong>n_init</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, optional, default: 10</span></dt>
+            <dd><p class="first last">Number of time the k-means algorithm will be run with different
+            centroid seeds. The final results will be the best output of
+            n_init consecutive runs in terms of inertia.</p>
+            </dd>
+            <dt><strong>gamma</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float, default=1.0</span></dt>
+            <dd><p class="first last">Kernel coefficient for rbf, poly, sigmoid, laplacian and chi2 kernels.
+            Ignored for <code class="docutils literal"><span class="pre">affinity='nearest_neighbors'</span></code>.</p>
+            </dd>
+            <dt><strong>affinity</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string, array-like or callable, default ‘rbf’</span></dt>
+            <dd><p class="first">If a string, this may be one of ‘nearest_neighbors’, ‘precomputed’,
+            ‘rbf’ or one of the kernels supported by
+            <cite>sklearn.metrics.pairwise_kernels</cite>.</p>
+            <p class="last">Only kernels that produce similarity scores (non-negative values that
+            increase with similarity) should be used. This property is not checked
+            by the clustering algorithm.</p>
+            </dd>
+            <dt><strong>n_neighbors</strong> <span class="classifier-delimiter">:</span> <span class="classifier">integer</span></dt>
+            <dd><p class="first last">Number of neighbors to use when constructing the affinity matrix using
+            the nearest neighbors method. Ignored for <code class="docutils literal"><span class="pre">affinity='rbf'</span></code>.</p>
+            </dd>
+            <dt><strong>eigen_tol</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float, optional, default: 0.0</span></dt>
+            <dd><p class="first last">Stopping criterion for eigendecomposition of the Laplacian matrix
+            when using arpack eigen_solver.</p>
+            </dd>
+            <dt><strong>assign_labels</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘kmeans’, ‘discretize’}, default: ‘kmeans’</span></dt>
+            <dd><p class="first last">The strategy to use to assign labels in the embedding
+            space. There are two ways to assign labels after the laplacian
+            embedding. k-means can be applied and is a popular choice. But it can
+            also be sensitive to initialization. Discretization is another approach
+            which is less sensitive to random initialization.</p>
+            </dd>
+            <dt><strong>degree</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float, default=3</span></dt>
+            <dd><p class="first last">Degree of the polynomial kernel. Ignored by other kernels.</p>
+            </dd>
+            <dt><strong>coef0</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float, default=1</span></dt>
+            <dd><p class="first last">Zero coefficient for polynomial and sigmoid kernels.
+            Ignored by other kernels.</p>
+            </dd>
+            <dt><strong>kernel_params</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dictionary of string to any, optional</span></dt>
+            <dd><p class="first last">Parameters (keyword arguments) and values for kernel passed as
+            callable object. Ignored by other kernels.</p>
+            </dd>
+            <dt><strong>n_jobs</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int or None, optional (default=None)</span></dt>
+            <dd><p class="first last">The number of parallel jobs to run.
+            <code class="docutils literal"><span class="pre">None</span></code> means 1 unless in a <a class="reference external" href="https://joblib.readthedocs.io/en/latest/parallel.html#joblib.parallel_backend" title="(in joblib v0.13.2)"><code class="xref py py-obj docutils literal"><span class="pre">joblib.parallel_backend</span></code></a> context.
+            <code class="docutils literal"><span class="pre">-1</span></code> means using all processors. See <a class="reference internal" href="../../glossary.html#term-n-jobs"><span class="xref std std-term">Glossary</span></a>
+            for more details.</p>
+            </dd>
+            </dl>
+            </td>
+            </tr>
+            <tr class="field-even field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+            <dt><strong>affinity_matrix_</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array-like, shape (n_samples, n_samples)</span></dt>
+            <dd><p class="first last">Affinity matrix used for clustering. Available only if after calling
+            <code class="docutils literal"><span class="pre">fit</span></code>.</p>
+            </dd>
+            <dt><strong>labels_ :</strong></dt>
+            <dd><p class="first last">Labels of each point</p>
+            </dd>
+            </dl>
+            </td>
+            </tr>
+            </tbody>
+            </table>
+
+        </div>
+    {% endautoescape %}
+
+{% endblock %}

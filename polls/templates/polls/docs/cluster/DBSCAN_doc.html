@@ -1,0 +1,90 @@
+{% extends 'polls/base.html' %}
+
+{% block content %}
+    {#Base EXCEL NAV HERE#}
+    {% autoescape off %}
+        <div class = "container">
+        <h1 class="text-primary">DBSCAN:</h1>
+            <p class="">Perform DBSCAN clustering from vector array or distance matrix.
+            </p>
+            <p class="">DBSCAN - Density-Based Spatial Clustering of Applications with Noise. Finds core samples of high density and expands clusters from them. Good for data which contains clusters of similar density.
+            </p>
+        <hr>
+
+
+            <table class="docutils field-list" frame="void" rules="none">
+            <colgroup><col class="field-name">
+            <col class="field-body">
+            </colgroup><tbody valign="top">
+            <tr class="field-odd field"><th class="field-name"><h2 class="text-light  font-weight-bold">Parameters:</h2></th><td class="field-body"><dl class="first docutils">
+            <dt><strong>eps</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float, optional</span></dt>
+            <dd><p class="first last">The maximum distance between two samples for them to be considered
+            as in the same neighborhood.</p>
+            </dd>
+            <dt><strong>min_samples</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, optional</span></dt>
+            <dd><p class="first last">The number of samples (or total weight) in a neighborhood for a point
+            to be considered as a core point. This includes the point itself.</p>
+            </dd>
+            <dt><strong>metric</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string, or callable</span></dt>
+            <dd><p class="first">The metric to use when calculating distance between instances in a
+            feature array. If metric is a string or callable, it must be one of
+            the options allowed by <a class="reference internal" href="sklearn.metrics.pairwise_distances.html#sklearn.metrics.pairwise_distances" title="sklearn.metrics.pairwise_distances"><code class="xref py py-func docutils literal"><span class="pre">sklearn.metrics.pairwise_distances</span></code></a> for
+            its metric parameter.
+            If metric is “precomputed”, X is assumed to be a distance matrix and
+            must be square. X may be a sparse matrix, in which case only “nonzero”
+            elements may be considered neighbors for DBSCAN.</p>
+            <div class="last versionadded">
+            <p><span class="versionmodified">New in version 0.17: </span>metric <em>precomputed</em> to accept precomputed sparse matrix.</p>
+            </div>
+            </dd>
+            <dt><strong>metric_params</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dict, optional</span></dt>
+            <dd><p class="first">Additional keyword arguments for the metric function.</p>
+            <div class="last versionadded">
+            <p><span class="versionmodified">New in version 0.19.</span></p>
+            </div>
+            </dd>
+            <dt><strong>algorithm</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘auto’, ‘ball_tree’, ‘kd_tree’, ‘brute’}, optional</span></dt>
+            <dd><p class="first last">The algorithm to be used by the NearestNeighbors module
+            to compute pointwise distances and find nearest neighbors.
+            See NearestNeighbors module documentation for details.</p>
+            </dd>
+            <dt><strong>leaf_size</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, optional (default = 30)</span></dt>
+            <dd><p class="first last">Leaf size passed to BallTree or cKDTree. This can affect the speed
+            of the construction and query, as well as the memory required
+            to store the tree. The optimal value depends
+            on the nature of the problem.</p>
+            </dd>
+            <dt><strong>p</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float, optional</span></dt>
+            <dd><p class="first last">The power of the Minkowski metric to be used to calculate distance
+            between points.</p>
+            </dd>
+            <dt><strong>n_jobs</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int or None, optional (default=None)</span></dt>
+            <dd><p class="first last">The number of parallel jobs to run.
+            <code class="docutils literal"><span class="pre">None</span></code> means 1 unless in a <a class="reference external" href="https://joblib.readthedocs.io/en/latest/parallel.html#joblib.parallel_backend" title="(in joblib v0.13.2)"><code class="xref py py-obj docutils literal"><span class="pre">joblib.parallel_backend</span></code></a> context.
+            <code class="docutils literal"><span class="pre">-1</span></code> means using all processors. See <a class="reference internal" href="../../glossary.html#term-n-jobs"><span class="xref std std-term">Glossary</span></a>
+            for more details.</p>
+            </dd>
+            </dl>
+            </td>
+            </tr>
+            <tr class="field-even field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+            <dt><strong>core_sample_indices_</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array, shape = [n_core_samples]</span></dt>
+            <dd><p class="first last">Indices of core samples.</p>
+            </dd>
+            <dt><strong>components_</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array, shape = [n_core_samples, n_features]</span></dt>
+            <dd><p class="first last">Copy of each core sample found by training.</p>
+            </dd>
+            <dt><strong>labels_</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array, shape = [n_samples]</span></dt>
+            <dd><p class="first last">Cluster labels for each point in the dataset given to fit().
+            Noisy samples are given the label -1.</p>
+            </dd>
+            </dl>
+            </td>
+            </tr>
+            </tbody>
+            </table>
+
+        </div>
+    {% endautoescape %}
+
+{% endblock %}

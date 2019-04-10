@@ -1,0 +1,99 @@
+{% extends 'polls/base.html' %}
+
+{% block content %}
+    {#Base EXCEL NAV HERE#}
+    {% autoescape off %}
+        <div class = "container">
+        <h1 class="text-primary">AgglomerativeClustering:</h1>
+            <p class="">Agglomerative Clustering.
+            </p>
+            <p class="">Recursively merges the pair of clusters that minimally increases a given linkage distance.</p>
+        <hr>
+
+
+            <table class="docutils field-list" frame="void" rules="none">
+            <colgroup><col class="field-name">
+            <col class="field-body">
+            </colgroup><tbody valign="top">
+            <tr class="field-odd field"><th class="field-name"><h2 class="text-light  font-weight-bold">Parameters:</h2></th><td class="field-body"><dl class="first docutils">
+            <dt><strong>n_clusters</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, default=2</span></dt>
+            <dd><p class="first last">The number of clusters to find.</p>
+            </dd>
+            <dt><strong>affinity</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string or callable, default: “euclidean”</span></dt>
+            <dd><p class="first last">Metric used to compute the linkage. Can be “euclidean”, “l1”, “l2”,
+            “manhattan”, “cosine”, or ‘precomputed’.
+            If linkage is “ward”, only “euclidean” is accepted.</p>
+            </dd>
+            <dt><strong>memory</strong> <span class="classifier-delimiter">:</span> <span class="classifier">None, str or object with the joblib.Memory interface, optional</span></dt>
+            <dd><p class="first last">Used to cache the output of the computation of the tree.
+            By default, no caching is done. If a string is given, it is the
+            path to the caching directory.</p>
+            </dd>
+            <dt><strong>connectivity</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array-like or callable, optional</span></dt>
+            <dd><p class="first last">Connectivity matrix. Defines for each sample the neighboring
+            samples following a given structure of the data.
+            This can be a connectivity matrix itself or a callable that transforms
+            the data into a connectivity matrix, such as derived from
+            kneighbors_graph. Default is None, i.e, the
+            hierarchical clustering algorithm is unstructured.</p>
+            </dd>
+            <dt><strong>compute_full_tree</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool or ‘auto’ (optional)</span></dt>
+            <dd><p class="first last">Stop early the construction of the tree at n_clusters. This is
+            useful to decrease computation time if the number of clusters is
+            not small compared to the number of samples. This option is
+            useful only when specifying a connectivity matrix. Note also that
+            when varying the number of clusters and using caching, it may
+            be advantageous to compute the full tree.</p>
+            </dd>
+            <dt><strong>linkage</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{“ward”, “complete”, “average”, “single”}, optional             (default=”ward”)</span></dt>
+            <dd><p class="first">Which linkage criterion to use. The linkage criterion determines which
+            distance to use between sets of observation. The algorithm will merge
+            the pairs of cluster that minimize this criterion.</p>
+            <ul class="last simple">
+            <li>ward minimizes the variance of the clusters being merged.</li>
+            <li>average uses the average of the distances of each observation of
+            the two sets.</li>
+            <li>complete or maximum linkage uses the maximum distances between
+            all observations of the two sets.</li>
+            <li>single uses the minimum of the distances between all observations
+            of the two sets.</li>
+            </ul>
+            </dd>
+            <dt><strong>pooling_func</strong> <span class="classifier-delimiter">:</span> <span class="classifier">callable, default=’deprecated’</span></dt>
+            <dd><p class="first">Ignored.</p>
+            <div class="last deprecated">
+            <p><span class="versionmodified">Deprecated since version 0.20: </span><code class="docutils literal"><span class="pre">pooling_func</span></code> has been deprecated in 0.20 and will be removed
+            in 0.22.</p>
+            </div>
+            </dd>
+            </dl>
+            </td>
+            </tr>
+            <tr class="field-even field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+            <dt><strong>labels_</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array [n_samples]</span></dt>
+            <dd><p class="first last">cluster labels for each point</p>
+            </dd>
+            <dt><strong>n_leaves_</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+            <dd><p class="first last">Number of leaves in the hierarchical tree.</p>
+            </dd>
+            <dt><strong>n_components_</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+            <dd><p class="first last">The estimated number of connected components in the graph.</p>
+            </dd>
+            <dt><strong>children_</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array-like, shape (n_samples-1, 2)</span></dt>
+            <dd><p class="first last">The children of each non-leaf node. Values less than <cite>n_samples</cite>
+            correspond to leaves of the tree which are the original samples.
+            A node <cite>i</cite> greater than or equal to <cite>n_samples</cite> is a non-leaf
+            node and has children <cite>children_[i - n_samples]</cite>. Alternatively
+            at the i-th iteration, children[i][0] and children[i][1]
+            are merged to form node <cite>n_samples + i</cite></p>
+            </dd>
+            </dl>
+            </td>
+            </tr>
+            </tbody>
+            </table>
+
+        </div>
+    {% endautoescape %}
+
+{% endblock %}

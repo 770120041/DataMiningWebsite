@@ -54,5 +54,5 @@ urlpatterns += [
 
 # docs
 urlpatterns += [
-    path('docs/<slug:doc_name>/',DocsView.as_view(),name='view_docs')
+    path('docs/<slug:method>/<slug:doc_name>/',DocsView.as_view(),name='view_docs')
 ]

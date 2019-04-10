@@ -1,0 +1,88 @@
+{% extends 'polls/base.html' %}
+
+{% block content %}
+    {#Base EXCEL NAV HERE#}
+    {% autoescape off %}
+        <div class = "container">
+        <h1 class="text-primary">Birch:</h1>
+            <p class="">Implements the Birch clustering algorithm.
+            </p>
+            <p>It is a memory-efficient, online-learning algorithm provided as an
+alternative to <a class="reference internal" href="/polls/docs/CR/MBKM_doc/" title="MiniBatchKMeans"><code class="xref py py-class docutils literal"><span class="pre">MiniBatchKMeans</span></code></a>. It constructs a tree
+data structure with the cluster centroids being read off the leaf.
+These can be either the final cluster centroids or can be provided as input
+to another clustering algorithm such as <a class="reference internal" href="/polls/docs/CR/AGC_doc/"  title="AgglomerativeClustering"><code class="xref py py-class docutils literal"><span class="pre">AgglomerativeClustering</span></code></a>.</p>
+
+        <hr>
+
+
+            <table class="docutils field-list" frame="void" rules="none">
+            <colgroup><col class="field-name">
+            <col class="field-body">
+            </colgroup><tbody valign="top">
+            <tr class="field-odd field"><th class="field-name"><h2 class="text-light  font-weight-bold">Parameters:</h2></th><td class="field-body"><dl class="first docutils">
+            <dt><strong>threshold</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float, default 0.5</span></dt>
+            <dd><p class="first last">The radius of the subcluster obtained by merging a new sample and the
+            closest subcluster should be lesser than the threshold. Otherwise a new
+            subcluster is started. Setting this value to be very low promotes
+            splitting and vice-versa.</p>
+            </dd>
+            <dt><strong>branching_factor</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, default 50</span></dt>
+            <dd><p class="first last">Maximum number of CF subclusters in each node. If a new samples enters
+            such that the number of subclusters exceed the branching_factor then
+            that node is split into two nodes with the subclusters redistributed
+            in each. The parent subcluster of that node is removed and two new
+            subclusters are added as parents of the 2 split nodes.</p>
+            </dd>
+            <dt><strong>n_clusters</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, instance of sklearn.cluster model, default 3</span></dt>
+            <dd><p class="first">Number of clusters after the final clustering step, which treats the
+            subclusters from the leaves as new samples.</p>
+            <ul class="last simple">
+            <li><cite>None</cite> : the final clustering step is not performed and the
+            subclusters are returned as they are.</li>
+            <li><cite>sklearn.cluster</cite> Estimator : If a model is provided, the model is
+            fit treating the subclusters as new samples and the initial data is
+            mapped to the label of the closest subcluster.</li>
+            <li><cite>int</cite> : the model fit is <a class="reference internal" href="sklearn.cluster.AgglomerativeClustering.html#sklearn.cluster.AgglomerativeClustering" title="sklearn.cluster.AgglomerativeClustering"><code class="xref py py-class docutils literal"><span class="pre">AgglomerativeClustering</span></code></a> with
+            <cite>n_clusters</cite> set to be equal to the int.</li>
+            </ul>
+            </dd>
+            <dt><strong>compute_labels</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool, default True</span></dt>
+            <dd><p class="first last">Whether or not to compute labels for each fit.</p>
+            </dd>
+            <dt><strong>copy</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool, default True</span></dt>
+            <dd><p class="first last">Whether or not to make a copy of the given data. If set to False,
+            the initial data will be overwritten.</p>
+            </dd>
+            </dl>
+            </td>
+            </tr>
+            <tr class="field-even field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+            <dt><strong>root_</strong> <span class="classifier-delimiter">:</span> <span class="classifier">_CFNode</span></dt>
+            <dd><p class="first last">Root of the CFTree.</p>
+            </dd>
+            <dt><strong>dummy_leaf_</strong> <span class="classifier-delimiter">:</span> <span class="classifier">_CFNode</span></dt>
+            <dd><p class="first last">Start pointer to all the leaves.</p>
+            </dd>
+            <dt><strong>subcluster_centers_</strong> <span class="classifier-delimiter">:</span> <span class="classifier">ndarray,</span></dt>
+            <dd><p class="first last">Centroids of all subclusters read directly from the leaves.</p>
+            </dd>
+            <dt><strong>subcluster_labels_</strong> <span class="classifier-delimiter">:</span> <span class="classifier">ndarray,</span></dt>
+            <dd><p class="first last">Labels assigned to the centroids of the subclusters after
+            they are clustered globally.</p>
+            </dd>
+            <dt><strong>labels_</strong> <span class="classifier-delimiter">:</span> <span class="classifier">ndarray, shape (n_samples,)</span></dt>
+            <dd><p class="first last">Array of labels assigned to the input data.
+            if partial_fit is used instead of fit, they are assigned to the
+            last batch of data.</p>
+            </dd>
+            </dl>
+            </td>
+            </tr>
+            </tbody>
+            </table>
+
+        </div>
+    {% endautoescape %}
+
+{% endblock %}

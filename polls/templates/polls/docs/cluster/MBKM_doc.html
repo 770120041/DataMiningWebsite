@@ -1,0 +1,111 @@
+{% extends 'polls/base.html' %}
+
+{% block content %}
+    {#Base EXCEL NAV HERE#}
+    {% autoescape off %}
+        <div class = "container">
+        <h1 class="text-primary">MiniBatchKMeans:</h1>
+            <p class="">Mini-Batch K-Means clustering.
+            </p>
+
+        <hr>
+
+
+            <table class="docutils field-list" frame="void" rules="none">
+            <colgroup><col class="field-name">
+            <col class="field-body">
+            </colgroup><tbody valign="top">
+            <tr class="field-odd field"><th class="field-name"><h2 class="text-light  font-weight-bold">Parameters:</h2></th><td class="field-body"><dl class="first docutils">
+            <dt><strong>n_clusters</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, optional, default: 8</span></dt>
+            <dd><p class="first last">The number of clusters to form as well as the number of
+            centroids to generate.</p>
+            </dd>
+            <dt><strong>init</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘k-means++’, ‘random’ or an ndarray}, default: ‘k-means++’</span></dt>
+            <dd><p class="first">Method for initialization, defaults to ‘k-means++’:</p>
+            <p>‘k-means++’ : selects initial cluster centers for k-mean
+            clustering in a smart way to speed up convergence. See section
+            Notes in k_init for more details.</p>
+            <p>‘random’: choose k observations (rows) at random from data for
+            the initial centroids.</p>
+            <p class="last">If an ndarray is passed, it should be of shape (n_clusters, n_features)
+            and gives the initial centers.</p>
+            </dd>
+            <dt><strong>max_iter</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, optional</span></dt>
+            <dd><p class="first last">Maximum number of iterations over the complete dataset before
+            stopping independently of any early stopping criterion heuristics.</p>
+            </dd>
+            <dt><strong>batch_size</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, optional, default: 100</span></dt>
+            <dd><p class="first last">Size of the mini batches.</p>
+            </dd>
+            <dt><strong>verbose</strong> <span class="classifier-delimiter">:</span> <span class="classifier">boolean, optional</span></dt>
+            <dd><p class="first last">Verbosity mode.</p>
+            </dd>
+            <dt><strong>compute_labels</strong> <span class="classifier-delimiter">:</span> <span class="classifier">boolean, default=True</span></dt>
+            <dd><p class="first last">Compute label assignment and inertia for the complete dataset
+            once the minibatch optimization has converged in fit.</p>
+            </dd>
+            <dt><strong>random_state</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, RandomState instance or None (default)</span></dt>
+            <dd><p class="first last">Determines random number generation for centroid initialization and
+            random reassignment. Use an int to make the randomness deterministic.
+            See <a class="reference internal" href="../../glossary.html#term-random-state"><span class="xref std std-term">Glossary</span></a>.</p>
+            </dd>
+            <dt><strong>tol</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float, default: 0.0</span></dt>
+            <dd><p class="first">Control early stopping based on the relative center changes as
+            measured by a smoothed, variance-normalized of the mean center
+            squared position changes. This early stopping heuristics is
+            closer to the one used for the batch variant of the algorithms
+            but induces a slight computational and memory overhead over the
+            inertia heuristic.</p>
+            <p class="last">To disable convergence detection based on normalized center
+            change, set tol to 0.0 (default).</p>
+            </dd>
+            <dt><strong>max_no_improvement</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, default: 10</span></dt>
+            <dd><p class="first">Control early stopping based on the consecutive number of mini
+            batches that does not yield an improvement on the smoothed inertia.</p>
+            <p class="last">To disable convergence detection based on inertia, set
+            max_no_improvement to None.</p>
+            </dd>
+            <dt><strong>init_size</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, optional, default: 3 * batch_size</span></dt>
+            <dd><p class="first last">Number of samples to randomly sample for speeding up the
+            initialization (sometimes at the expense of accuracy): the
+            only algorithm is initialized by running a batch KMeans on a
+            random subset of the data. This needs to be larger than n_clusters.</p>
+            </dd>
+            <dt><strong>n_init</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, default=3</span></dt>
+            <dd><p class="first last">Number of random initializations that are tried.
+            In contrast to KMeans, the algorithm is only run once, using the
+            best of the <code class="docutils literal"><span class="pre">n_init</span></code> initializations as measured by inertia.</p>
+            </dd>
+            <dt><strong>reassignment_ratio</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float, default: 0.01</span></dt>
+            <dd><p class="first last">Control the fraction of the maximum number of counts for a
+            center to be reassigned. A higher value means that low count
+            centers are more easily reassigned, which means that the
+            model will take longer to converge, but should converge in a
+            better clustering.</p>
+            </dd>
+            </dl>
+            </td>
+            </tr>
+            <tr class="field-even field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+            <dt><strong>cluster_centers_</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array, [n_clusters, n_features]</span></dt>
+            <dd><p class="first last">Coordinates of cluster centers</p>
+            </dd>
+            <dt><strong>labels_ :</strong></dt>
+            <dd><p class="first last">Labels of each point (if compute_labels is set to True).</p>
+            </dd>
+            <dt><strong>inertia_</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+            <dd><p class="first last">The value of the inertia criterion associated with the chosen
+            partition (if compute_labels is set to True). The inertia is
+            defined as the sum of square distances of samples to their nearest
+            neighbor.</p>
+            </dd>
+            </dl>
+            </td>
+            </tr>
+            </tbody>
+            </table>
+
+        </div>
+    {% endautoescape %}
+
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'polls/base.html' %}
+
+{% block content %}
+    {#Base EXCEL NAV HERE#}
+    {% autoescape off %}
+        <div class = "container">
+        <h1 class="text-primary">AffinityPropagation:</h1>
+            <p class="">Perform Affinity Propagation Clustering of data.
+            </p>
+
+        <hr>
+
+
+            <table class="docutils field-list" frame="void" rules="none">
+            <colgroup><col class="field-name">
+            <col class="field-body">
+            </colgroup><tbody valign="top">
+            <tr class="field-odd field"><th class="field-name"><h2 class="text-light  font-weight-bold">Parameters:</h2></th><td class="field-body"><dl class="first docutils">
+            <dt><strong>damping</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float, optional, default: 0.5</span></dt>
+            <dd><p class="first last">Damping factor (between 0.5 and 1) is the extent to
+            which the current value is maintained relative to
+            incoming values (weighted 1 - damping). This in order
+            to avoid numerical oscillations when updating these
+            values (messages).</p>
+            </dd>
+            <dt><strong>max_iter</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, optional, default: 200</span></dt>
+            <dd><p class="first last">Maximum number of iterations.</p>
+            </dd>
+            <dt><strong>convergence_iter</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, optional, default: 15</span></dt>
+            <dd><p class="first last">Number of iterations with no change in the number
+            of estimated clusters that stops the convergence.</p>
+            </dd>
+            <dt><strong>copy</strong> <span class="classifier-delimiter">:</span> <span class="classifier">boolean, optional, default: True</span></dt>
+            <dd><p class="first last">Make a copy of input data.</p>
+            </dd>
+            <dt><strong>preference</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array-like, shape (n_samples,) or float, optional</span></dt>
+            <dd><p class="first last">Preferences for each point - points with larger values of
+            preferences are more likely to be chosen as exemplars. The number
+            of exemplars, ie of clusters, is influenced by the input
+            preferences value. If the preferences are not passed as arguments,
+            they will be set to the median of the input similarities.</p>
+            </dd>
+            <dt><strong>affinity</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string, optional, default=``euclidean``</span></dt>
+            <dd><p class="first last">Which affinity to use. At the moment <code class="docutils literal"><span class="pre">precomputed</span></code> and
+            <code class="docutils literal"><span class="pre">euclidean</span></code> are supported. <code class="docutils literal"><span class="pre">euclidean</span></code> uses the
+            negative squared euclidean distance between points.</p>
+            </dd>
+            <dt><strong>verbose</strong> <span class="classifier-delimiter">:</span> <span class="classifier">boolean, optional, default: False</span></dt>
+            <dd><p class="first last">Whether to be verbose.</p>
+            </dd>
+            </dl>
+            </td>
+            </tr>
+            <tr class="field-even field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+            <dt><strong>cluster_centers_indices_</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array, shape (n_clusters,)</span></dt>
+            <dd><p class="first last">Indices of cluster centers</p>
+            </dd>
+            <dt><strong>cluster_centers_</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array, shape (n_clusters, n_features)</span></dt>
+            <dd><p class="first last">Cluster centers (if affinity != <code class="docutils literal"><span class="pre">precomputed</span></code>).</p>
+            </dd>
+            <dt><strong>labels_</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array, shape (n_samples,)</span></dt>
+            <dd><p class="first last">Labels of each point</p>
+            </dd>
+            <dt><strong>affinity_matrix_</strong> <span class="classifier-delimiter">:</span> <span class="classifier">array, shape (n_samples, n_samples)</span></dt>
+            <dd><p class="first last">Stores the affinity matrix used in <code class="docutils literal"><span class="pre">fit</span></code>.</p>
+            </dd>
+            <dt><strong>n_iter_</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+            <dd><p class="first last">Number of iterations taken to converge.</p>
+            </dd>
+            </dl>
+            </td>
+            </tr>
+            </tbody>
+            </table>
+
+        </div>
+    {% endautoescape %}
+
+{% endblock %}
