@@ -1,7 +1,6 @@
 from django.db import models
 
 # import this module to serilize dataframez
-# from picklefield.fields import PickledObjectField
 from django.urls import  reverse
 # Create your models here.
 
