@@ -4,3 +4,4 @@ scikit-learn
 Django
 scipy
 django-picklefield
+mlxtend

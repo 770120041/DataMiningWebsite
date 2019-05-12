@@ -22,7 +22,7 @@ urlpatterns = [
 
 # pre_process table view
 urlpatterns += [
-    path(r'table/<slug:slug>/', TableView.as_view(), name='table_url_parsing'),
+    path(r'table/<slug:df_description>/', TableView.as_view(), name='table_url_parsing'),
 ]
 
 # classification
@@ -47,8 +47,8 @@ urlpatterns += [
 ]
 
 urlpatterns += [
-    path('success/',views.success_url, name='op_success'),
-    path('fail_upload/', views.fail_upload, name = 'fail_uload')
+    path('upload/success/',views.success_url, name='op_success'),
+    path('upload/fail_upload/', views.fail_upload, name = 'fail_uload')
 ]
 
 

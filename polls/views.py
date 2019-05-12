@@ -3,16 +3,23 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from django.core.validators import FileExtensionValidator
 
+from django.contrib import messages
 
 from polls.forms import  *
 from polls.logic.CR import MyClustering
 from polls.models import *
 
 from polls.logic import *
+import os
 
-TMPDIRPATH = "\\polls\\tmp\\"
-DATADIRPATH = "\\polls\\data\\"
-ROOTPATH = get_root_path()
+if os.name == 'nt':
+
+    TMPDIRPATH = "\\polls\\tmp\\"
+    DATADIRPATH = "\\polls\\data\\"
+    ROOTPATH = get_root_path()
+else:
+    TMPDIRPATH = "/polls/tmp/"
+    DATADIRPATH = "/polls/data/"
 
 """
     Section:    
@@ -30,23 +37,25 @@ class TableView(View):
     root_path = get_root_path()
 
     # param is table name
-    def get(self, request, slug):
-        dfmodel = get_object_or_404(DataFrameModel, df_description=slug)
-        df = read_csv_file(self.root_path + DATADIRPATH + dfmodel.df_stroed_name)
+    def get(self, request, df_description):
+        csv_name = df_description +".csv"
+        print(csv_name)
+        # dfmodel = get_object_or_404(DataFrameModel, df_description=slug)
+        df = read_csv_file(self.root_path + DATADIRPATH + csv_name)
         form = PreprocessForm(initial=self.form_inital)
         context ={
             "form": form,
-            "tableName": slug,
+            "tableName": df_description,
             "table": df_to_html(df)
         }
         return render(request, self.TEMPLATE_NAME, context=context)
 
     # submit form
-    def post(self, request, slug):
-
-        dfmodel = get_object_or_404(DataFrameModel, df_description=slug)
+    def post(self, request, df_description):
+        csv_name = df_description + ".csv"
+        # dfmodel = get_object_or_404(DataFrameModel, df_description=slug)
         form = PreprocessForm(request.POST)
-        df = read_csv_file(self.root_path + DATADIRPATH + dfmodel.df_stroed_name)
+        df = read_csv_file(self.root_path + DATADIRPATH + csv_name)
         if form.is_valid():
             if form.cleaned_data['drop_missing']:
                 df = drop_na(df)
@@ -54,8 +63,8 @@ class TableView(View):
                 df = char_to_digit(df)
 
             # save new df
-            new_csv_description = dfmodel.df_description + "-after-preprocessing"
-            new_csv_store_name = dfmodel.df_stroed_name.replace(".csv", "_pre.csv")
+            new_csv_description = df_description + "-after-preprocessing"
+            new_csv_store_name =csv_name.replace(".csv", "_pre.csv")
 
             save_csv_file(df, self.root_path + TMPDIRPATH + new_csv_store_name)
 
@@ -70,7 +79,7 @@ class TableView(View):
         # in case form not valid
         context = {
             "form": form,
-            "tableName": slug,
+            "tableName": df_description,
             "table": df_to_html(df)
         }
         return render(request, self.TEMPLATE_NAME, context=context)
@@ -242,30 +251,18 @@ class DocsView(View):
 """
 
 
-def home(request):
-    return render(request, 'polls/home.html')
-
-
-def about(request):
-    return render(request, 'polls/about.html')
-
-def success_url(request):
-    return HttpResponse("success page")
-
-def fail_upload(request):
-    return HttpResponse("fail page")
-
 def upload_file(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             file = form.cleaned_data["file"]
             if form.cleaned_data['title'].lower().endswith('.csv') is not True:
-                return redirect('/polls/fail_upload/')
+                messages.add_message(request, messages.INFO, 'Must be ending with CSV')
+                return redirect('/polls/upload/')
 
             print("file name is " + form.cleaned_data['title'])
-            save_upload_file(file, ROOTPATH + TMPDIRPATH + form.cleaned_data["title"])
-            return redirect('/polls/success/')
+            save_upload_file(file, ROOTPATH + DATADIRPATH + form.cleaned_data["title"].lower())
+            return redirect('/polls/table/'+form.cleaned_data['title'].lower().replace(".csv", ""))
     else:
         form = UploadFileForm()
     return render(request, 'polls/upload.html', {'form': form})
@@ -273,5 +270,14 @@ def upload_file(request):
 def delete_local_cache(request):
     print("in deleted local cache funciton")
     return redirect("/polls/about/")
+
+
+
+def home(request):
+    return render(request, 'polls/home.html')
+
+
+def about(request):
+    return render(request, 'polls/about.html')
 
 
