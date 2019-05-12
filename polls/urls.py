@@ -35,6 +35,10 @@ urlpatterns += [
     path(r'CR/<slug:new_csv_store_name>/', ClusteringView.as_view(), name='classification'),
     path(r'CR_result/<slug:new_csv_store_name>/', CR_result.as_view(), name='CFresult')
 ]
+urlpatterns += [
+    path(r'AR/<slug:new_csv_store_name>/', AssociationRuleView.as_view(), name='classification'),
+    # path(r'CR_result/<slug:new_csv_store_name>/', CR_result.as_view(), name='CFresult')
+]
 
 urlpatterns += [
     path('delete_all_local_cache/', views.delete_local_cache, name='del_local_cache')

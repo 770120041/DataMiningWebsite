@@ -16,7 +16,7 @@ class PreprocessForm(forms.Form):
     method_dict = {
         "CF": "Classification",
         "CR": "Clustering",
-        "AS": "AssociationRules",
+        "AR": "AssociationRules",
     }
     Method_CHOICES = ((k, v) for k, v in method_dict.items())
 

@@ -6,26 +6,41 @@
     </div>
 
     <div class="container">
-        <form method="post" action="">
-            {% csrf_token %}
+       <div class="row">
+             <div class="col-sm-5">
+                <form method="post" action="">
+                    {% csrf_token %}
 
-            {% for hidden_field in form.hidden_fields %}
-            {{ hidden_field }}
-            {% endfor %}
+                    {% for hidden_field in form.hidden_fields %}
+                    {{ hidden_field }}
+                    {% endfor %}
 
-            {% for field in form.visible_fields %}
-                <div class="form-group">
-                    {{ field.label_tag }}
-                    {{ field }}
-                    {% if field.help_text %}
-                    <small class="form-text text-muted">{{ field.help_text }}</small>
-                    {% endif %}
-                </div>
-            {% endfor %}
+                    {% for field in form.visible_fields %}
+                        <div class="form-group">
+                            {{ field.label_tag }}
+                            {{ field }}
+                            {% if field.help_text %}
+                            <small class="form-text text-muted">{{ field.help_text }}</small>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
 
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+             </div>
+            <div>
+                <h3> Method Descrption:</h3>
+                <em>Classicfication</em>
+                <br>
+                <em>Clustering</em>
+                <br>
+                <em>Association Rules</em>
+                <br>
+            </div>
+       </div>
+
     </div>
+
 
 
 

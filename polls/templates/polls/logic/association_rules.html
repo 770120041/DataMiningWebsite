@@ -1,0 +1,43 @@
+{% extends 'polls/base.html' %}
+{% block title %} Classification {% endblock %}
+{% block content %}
+
+    <div class="chosen-container-active">
+        <p class="h1 text-center border">{{ tableName }}</p>
+    </div>
+
+    <div class="container-fluid">
+        <p class="h1 text-center border">Frequent Items:</p>
+        {% autoescape off %}
+             {{ frequent_itemsets }}
+        {% endautoescape %}
+    </div>
+
+    <div class="container-fluid">
+    <p class="h1 text-center border">Rules:</p>
+        {% autoescape off %}
+             {{ rules }}
+        {% endautoescape %}
+    </div>
+
+    <div class="container-fluid">
+        {% autoescape off %}
+            <p class="h1 text-center border">Tables:</p>
+
+             {{ table }}
+        {% endautoescape %}
+    </div>
+
+
+
+
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+    {# Initial here#}
+    class_description_text("LogisticRegression");
+     {#$("#classification_parameter_description span").append("first method");#}
+    init_classification_parameters("LogisticRegression");
+</script>
+{% endblock %}

@@ -243,11 +243,13 @@ class AssociationRuleView(View):
 
 
     def get(self, request, new_csv_store_name):
-        df = read_csv_file(self.root_path + DATADIRPATH + new_csv_store_name + ".csv")
+        df = read_csv_file(self.root_path + TMPDIRPATH + new_csv_store_name + ".csv")
         frequent_itemsets,rules = do_association_rule(df)
+        print(type(frequent_itemsets))
+        print(type(rules))
         context = {
-            "frequent_itemsets": frequent_itemsets,
-            "rules": rules,
+            "frequent_itemsets": df_to_html(frequent_itemsets),
+            "rules": df_to_html(rules),
             "table": df_to_html(df)
         }
         return render(request, self.TEMPLATE_NAME, context=context)
