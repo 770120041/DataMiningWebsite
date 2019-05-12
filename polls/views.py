@@ -5,7 +5,8 @@ from django.core.validators import FileExtensionValidator
 
 from django.contrib import messages
 
-from polls.forms import  *
+from polls.forms import *
+from polls.logic.AR import do_association_rule
 from polls.logic.CR import MyClustering
 from polls.models import *
 
@@ -232,6 +233,24 @@ class CR_result(View):
     End Section
 """
 
+
+"""
+    Section: Association Rules
+"""
+class AssociationRuleView(View):
+    TEMPLATE_NAME = 'polls/logic/association_rules.html'
+    root_path = get_root_path()
+
+
+    def get(self, request, new_csv_store_name):
+        df = read_csv_file(self.root_path + DATADIRPATH + new_csv_store_name + ".csv")
+        frequent_itemsets,rules = do_association_rule(df)
+        context = {
+            "frequent_itemsets": frequent_itemsets,
+            "rules": rules,
+            "table": df_to_html(df)
+        }
+        return render(request, self.TEMPLATE_NAME, context=context)
 """
     Section: showing a specific doc
 """

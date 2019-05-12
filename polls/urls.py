@@ -46,10 +46,10 @@ urlpatterns += [
     path('upload/', views.upload_file, name='upload_url')
 ]
 
-urlpatterns += [
-    path('upload/success/',views.success_url, name='op_success'),
-    path('upload/fail_upload/', views.fail_upload, name = 'fail_uload')
-]
+# urlpatterns += [
+#     path('upload/success/',views.success_url, name='op_success'),
+#     path('upload/fail_upload/', views.fail_upload, name = 'fail_uload')
+# ]
 
 
 # docs
