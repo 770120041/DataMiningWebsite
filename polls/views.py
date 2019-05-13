@@ -17,10 +17,10 @@ if os.name == 'nt':
 
     TMPDIRPATH = "\\polls\\tmp\\"
     DATADIRPATH = "\\polls\\data\\"
-    ROOTPATH = get_root_path()
 else:
     TMPDIRPATH = "/polls/tmp/"
     DATADIRPATH = "/polls/data/"
+ROOTPATH = get_root_path()
 
 """
     Section:    
