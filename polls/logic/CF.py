@@ -83,6 +83,7 @@ def get_train_test_data(df, label_name, x_name, ratio):
 def MyClassification(df, label_name, classifier_name, train_ratio, param=""):
     train_ratio = float(train_ratio)
     x_name = list(df.columns.values)
+
     x_name.remove(label_name)
     df_train, df_test, X_train, Y_train, X_test, Y_test = get_train_test_data(df, label_name, x_name,
                                                                          train_ratio)

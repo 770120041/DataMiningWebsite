@@ -14,7 +14,6 @@ from polls.logic import *
 import os
 
 if os.name == 'nt':
-
     TMPDIRPATH = "\\polls\\tmp\\"
     DATADIRPATH = "\\polls\\data\\"
 else:
