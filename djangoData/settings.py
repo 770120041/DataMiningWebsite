@@ -25,7 +25,8 @@ SECRET_KEY = '@cgr1agm$e%bn!5ogic&i7vzkmd6woo99lb5a2c9ux%3_5nm0('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['39.105.54.42']
 
 
 # Application definition
@@ -120,10 +121,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 
 # Settings in Linux server
 
-# STATIC_URL = '/polls/static/'
-# STATIC_ROOT = '/root/dataMining/polls/static/'
+STATIC_URL = '/polls/static/'
+STATIC_ROOT = '/root/dataMining/polls/static/'
 
