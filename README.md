@@ -9,3 +9,7 @@ ALLOWED_HOSTS = ['39.105.54.42']
 -STATIC_URL = '/static/'
 +STATIC_URL = '/polls/static/'
 +STATIC_ROOT = '/root/dataMining/polls/static/'
+
+# TODO
+Add file download
+Add descirption for Different method
