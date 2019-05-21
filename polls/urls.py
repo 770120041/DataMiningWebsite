@@ -45,9 +45,10 @@ urlpatterns += [
 ]
 
 
-# upload csv file
+# upload and download csv file
 urlpatterns += [
-    path('upload/', views.upload_file, name='upload_url')
+    path('upload/', views.upload_file, name='upload_url'),
+    path('download/<slug:new_csv_store_name>/', views.download_file, name='download_url')
 ]
 
 # urlpatterns += [

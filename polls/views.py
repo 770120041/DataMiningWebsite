@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
+from django.template.backends import django
 from django.views import View
 from django.core.validators import FileExtensionValidator
 
@@ -287,6 +288,14 @@ def upload_file(request):
     else:
         form = UploadFileForm()
     return render(request, 'polls/upload.html', {'form': form})
+
+def download_file(request,new_csv_store_name):
+    root_path = get_root_path()
+
+    CSV_file = open(root_path + TMPDIRPATH + new_csv_store_name + ".csv",'r').read()
+    resp = django.http.HttpResponse(CSV_file, mimetype='application/x-download')
+    resp['Content-Disposition'] = 'attachment;filename=table.csv'
+    return resp
 
 def delete_local_cache(request):
     print("in deleted local cache funciton")
