@@ -293,8 +293,9 @@ def download_file(request,new_csv_store_name):
     root_path = get_root_path()
 
     CSV_file = open(root_path + TMPDIRPATH + new_csv_store_name + ".csv",'r').read()
-    resp = django.http.HttpResponse(CSV_file, mimetype='application/x-download')
-    resp['Content-Disposition'] = 'attachment;filename=table.csv'
+    resp = HttpResponse(CSV_file, content_type='application/x-download')
+    result_name = 'attachment;filename='+new_csv_store_name+".csv"
+    resp['Content-Disposition'] = result_name
     return resp
 
 def delete_local_cache(request):
