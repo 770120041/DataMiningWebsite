@@ -291,7 +291,14 @@ def delete_local_cache(request):
     print("in deleted local cache funciton")
     return redirect("/polls/about/")
 
+def download_file(request,new_csv_store_name):
+    root_path = get_root_path()
 
+    CSV_file = open(root_path + TMPDIRPATH + new_csv_store_name + ".csv",'r').read()
+    resp = HttpResponse(CSV_file, content_type='application/x-download')
+    result_name = 'attachment;filename='+new_csv_store_name+".csv"
+    resp['Content-Disposition'] = result_name
+    return resp
 
 def home(request):
     return render(request, 'polls/home.html')

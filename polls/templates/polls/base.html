@@ -14,7 +14,12 @@
         <script src="{% static 'polls/js/jquery-3.3.1.min.js' %}"></script>
         <script src="{% static 'polls/js/bootstrap.js' %}"></script>
         <script src="{% static 'polls/js/ajaxcheck.js' %}"></script>
-
+        <script >
+            var cur_url = window.location.href;
+            {#var filename = url.substring(url.lastIndexOf('/')+1);#}
+            var new_url = cur_url.replace("polls/table/","polls/download/");
+            {#alert(new_url);#}
+        </script>
         {#Title Here!!#}
         <title>{% block title %}Project {% endblock %}</title>
 
@@ -32,10 +37,30 @@
 
                    </ul>
                  {#  right algined #}
+
                  <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
                       <li class="nav-item active">
-                          <input class="btn btn-danger navbar-btn" type="button" value="refresh" onclick="window.location.reload()"/>
+                       <a href="/polls/upload">UploadCSV</a>
+                  </li>
+                 </ul>
+{#                 <ul class="nav navbar-nav ml-auto w-100 justify-content-end">#}
+{#                      <li class="nav-item active">#}
+{##}
+{#                       <a href="/polls/download/">DownloadCSV</a>#}
+{#                      </li>#}
+{#                </ul>#}
+                   <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+                      <li class="nav-item active">
+                          <input class="btn btn-danger navbar-btn" type="button" value="download" onclick="window.location.replace(new_url)"/>
                       </li>
+{#                      <li class="nav-item mx-2">#}
+{#                          <button  class="btn btn-danger navbar-b" type="button" onclick="window.history.go(-1);window.location.reload()">Go Back</button>#}
+{#                      </li>#}
+                </ul>
+{#                  <ul class="nav navbar-nav ml-auto w-100 justify-content-end">#}
+{#                      <li class="nav-item active">#}
+{#                          <input class="btn btn-danger navbar-btn" type="button" value="refresh" onclick="window.location.reload()"/>#}
+{#                      </li>#}
 {#                      <li class="nav-item mx-2">#}
 {#                          <button  class="btn btn-danger navbar-b" type="button" onclick="window.history.go(-1);window.location.reload()">Go Back</button>#}
 {#                      </li>#}
