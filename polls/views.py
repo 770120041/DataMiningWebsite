@@ -33,7 +33,7 @@ class TableView(View):
         method diplaying
     """
     TEMPLATE_NAME = 'polls/preprocess.html'
-    form_inital = {"drop_missing": True, "digit_to_char": True, "Classifier": "CF"}
+    form_inital = {"drop_missing": True, "char_to_digit": True, "Classifier": "CF"}
     root_path = get_root_path()
 
     # param is table name
@@ -59,7 +59,7 @@ class TableView(View):
         if form.is_valid():
             if form.cleaned_data['drop_missing']:
                 df = drop_na(df)
-            if form.cleaned_data['digit_to_char']:
+            if form.cleaned_data['char_to_digit']:
                 df = char_to_digit(df)
 
             # save new df
