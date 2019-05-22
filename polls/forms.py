@@ -21,7 +21,7 @@ class PreprocessForm(forms.Form):
     Method_CHOICES = ((k, v) for k, v in method_dict.items())
 
     drop_missing = forms.BooleanField(required=False, help_text="Drop rows if there are missing slots.")
-    char_to_digit = forms.BooleanField(required=False, help_text="Map non-numeric columns to numeric")
+    digit_to_char = forms.BooleanField(required=False, help_text="Map non-numeric columns to numeric")
     method_selection = forms.ChoiceField(choices=Method_CHOICES)
 
 
