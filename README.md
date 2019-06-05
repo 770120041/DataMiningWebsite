@@ -38,7 +38,7 @@ Any use without prior notice is not allowed.
 - [X] 0.7 Finished documention for clustering
 - [X] 0.8 Deploy this software to server
 - [X] 0.9 Finished Aporiori based association rules, finished upload and downloading functionalities
-- [ ] 1.0 Adding detailed documentation and all functionalities for parameters adjustment
+- [X] 1.0 Adding detailed documentation and all functionalities for parameters adjustment
 
 ## Functionalities
 ### General
