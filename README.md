@@ -1,3 +1,8 @@
+# A data mining software for supply chain management
+[![Build Status](https://www.travis-ci.org/zurl/web-cpp.svg?branch=master)](https://www.travis-ci.org/zurl/web-cpp)
+[![Coverage Status](https://coveralls.io/repos/github/zurl/web-cpp/badge.svg?branch=master)](https://coveralls.io/github/zurl/web-cpp)
+
+
 # About
 This project is Zhe Liu's thesis of my bachelor's degree for Zhejiang University.<br>
 Any use without prior notice is not allowed.
