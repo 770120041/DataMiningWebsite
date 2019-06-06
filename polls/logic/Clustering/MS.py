@@ -1,3 +1,5 @@
+# Mean Shift   Algorithm
+
 import math
 import numpy as np
 import random
@@ -6,13 +8,7 @@ import matplotlib.pyplot as plt
 from matplotlib import cm
 from matplotlib.ticker import LinearLocator, FormatStrFormatter
 
-"""
-Sample Points is an array of vectors. 
-Each point of the vector is [x1,x2,x3...xn], where n is the number of dimensions
-Domain is an array of array of point, each array giving points in that dimension
 
-WINDOW MUST BE COMPUTED ACCORDING TO THE KERNEL
-"""
 class MeanShift(object):
 
 	def computeGaussianKernelValue(self,x):

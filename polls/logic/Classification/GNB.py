@@ -1,3 +1,4 @@
+# Gaussian Naive Bayes
 import csv
 import random
 import math

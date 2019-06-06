@@ -1,3 +1,4 @@
+# Agglomerative Clustering   Algorithm
 import numpy as np
 import numpy.matlib as mlib
 import numpy.linalg as lalib
@@ -24,11 +25,6 @@ def inverseEuclid(data):
 
 
 def affinityPropagationR(data, similarityFunction, lam=0.5, maxiter=100):
-    '''
-    data: database (n x m matrix)
-    lam: dumping factor
-    maxiter: maximum number of iterations
-    '''
 
     realmax = np.inf
     n = data.shape[0]  # database size

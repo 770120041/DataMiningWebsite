@@ -1,4 +1,4 @@
-# Example of Naive Bayes implemented from Scratch in Python
+
 import csv
 import random
 import math

@@ -1,41 +1,8 @@
-import random
+# Birth   Algorithm
 
-from datetime import datetime
+
 from math import sqrt
-from operator import add
 
-# FEATURES
-# - This is a quick test implementation of the BIRCH algorithm (http://www.cs.sfu.ca/cc/459/han/papers/zhang96.pdf)
-# - There's no guarantee that this implements the algorithm correctly.
-# - It was never meant to be used in production environments.
-# - We used it to study how the algorithm reacts to different (smallish) datasets and how to tweak its parameters.
-# - It does not rebuild the tree if it hits a memory boundary
-# - Because of that it works with a fixed T, there is no heuristic for T_(i+1)
-# - Hence, it does not consider outliers because there's no tree rebuilding
-# - Overall, it actually is not the whole algorithm, skips phase 2 to 4!
-
-
-### SETTINGS
-B = 10  # limit the amount of children a node can have
-# (the paper has another one especially for leaves. But we'll leave it at that!)
-
-T = 5000  # maximum size (treshold) of a cluster before it has to be split
-
-### SAMPLE EXECUTION SETTINGS
-sample_dimensions = 10  # how many dimensions does our tree have
-
-sample_vectors_fillpercentage = 50  # to which percentage are the vectors filled.
-# at 50% and 10 dimensions our vectors will
-# on average have a value in 5 dimensions
-# this simulates sparse vectors
-
-num_sample_points = 100  # how many vectors to insert
-
-# keep a few statistics
-splitcount = 0
-nodecount = 0
-entrycount = 0
-leafcount = 0
 
 
 class BaseNode(object):
@@ -188,6 +155,30 @@ class BaseNode(object):
         else:
             return max([(lambda x: x.depth)(x) for x in list])
 
+
+
+
+### SETTINGS
+B = 10  # limit the amount of children a node can have
+# (the paper has another one especially for leaves. But we'll leave it at that!)
+
+T = 5000  # maximum size (treshold) of a cluster before it has to be split
+
+### SAMPLE EXECUTION SETTINGS
+sample_dimensions = 10  # how many dimensions does our tree have
+
+sample_vectors_fillpercentage = 50  # to which percentage are the vectors filled.
+# at 50% and 10 dimensions our vectors will
+# on average have a value in 5 dimensions
+# this simulates sparse vectors
+
+num_sample_points = 100  # how many vectors to insert
+
+# keep a few statistics
+splitcount = 0
+nodecount = 0
+entrycount = 0
+leafcount = 0
 
 class Node(BaseNode):
     # has children which are nodes or leafs

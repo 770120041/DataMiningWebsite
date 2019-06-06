@@ -1,9 +1,4 @@
-# Run this program on your local python
-# interpreter, provided you have installed
-# the required libraries.
-
-# Importing the required packages
-import numpy as np
+# Descision Tree Algorithm
 import pandas as pd
 
 # Function importing Dataset

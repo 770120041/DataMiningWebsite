@@ -1,10 +1,38 @@
-# Example of kNN implemented from Scratch in Python
+# Kth nearest neighbor algorihtm
 
 import csv
 import random
 import math
 import operator
+import numpy as np
 
+
+
+def normalize(X):
+    '''
+    function to normalize feature matrix, X
+    '''
+    mins = np.min(X, axis=0)
+    maxs = np.max(X, axis=0)
+    rng = maxs - mins
+    norm_X = 1 - ((maxs - X) / rng)
+    return norm_X
+
+
+def logistic_func(beta, X):
+    '''
+    logistic(sigmoid) function
+    '''
+    return 1.0 / (1 + np.exp(-np.dot(X, beta.T)))
+
+
+def log_gradient(beta, X, y):
+    '''
+    logistic gradient function
+    '''
+    first_calc = logistic_func(beta, X) - y.reshape(X.shape[0], -1)
+    final_calc = np.dot(first_calc.T, X)
+    return final_calc
 
 def loadDataset(filename, split, trainingSet=[], testSet=[]):
     with open(filename, 'rb') as csvfile:
