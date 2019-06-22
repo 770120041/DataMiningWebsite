@@ -1,9 +1,5 @@
-# A data mining software for supply chain management
-This project is a online client-server model for supply chain management.
-
-## About
-This project is Zhe Liu's thesis of my bachelor's degree for Zhejiang University.<br>
-Any use without prior notice is not allowed.
+# About
+This project is a online client-server model data-mining application
 
 ## How to Use
 ### For running on local desktop:
