@@ -7,7 +7,7 @@ Any use without prior notice is not allowed.
 
 ## How to deploy this application
 ### Deploy locally with docker:
-0. Switch to `docker` branch
+0. Clone `docker` branch
 1. Install docker
 2. Run `docker build -t data-mining .`
 3. Run `docker-compose up -d --build` 
