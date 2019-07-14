@@ -27,6 +27,14 @@ Any use without prior notice is not allowed.
 +STATIC_URL = '/polls/static/'
 +STATIC_ROOT = '/root/dataMining/polls/static/'
 
+### For running use docker locally:
+
+1. install docker
+2. run `docker build -t data-mining .`
+3. run `docker-compose up -d --build` 
+4. Go to `localhost:8000`, all done
+
+
 # Road Map
 ## Version
 - [X] 0.1 CSV preview and nav bars, writing templates for home page and all sub-pages

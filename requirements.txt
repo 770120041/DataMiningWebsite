@@ -5,3 +5,4 @@ Django
 scipy
 django-picklefield
 mlxtend
+psycopg2-binary
