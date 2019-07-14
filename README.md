@@ -5,27 +5,32 @@ This project is a online client-server model for supply chain management.
 This project is Zhe Liu's thesis of my bachelor's degree for Zhejiang University.<br>
 Any use without prior notice is not allowed.
 
-## How to Use
+## How to deploy this application
+### For running use docker locally:
+0. Switch to `docker` branch
+1. install docker
+2. run `docker build -t data-mining .`
+3. run `docker-compose up -d --build` 
+4. Go to `localhost:8000`, all done
+
 ### For running on local desktop:
-
+0. using `master` branch
 1. install python3 first
-
 2. install all dependencies in `requirement.txt`
-
 3. type in `python manage.py runserver`
-
 4. You should be able to use this software in `localhost:8080` now
 
 
 ### For running on server:
-
+0. Switch to `server` branch
 1. cofigure nginx `uwsgi --http :8000 --chdir /root/dataMining/ -w djangoData.wsgi`
-
 2. configure path and allowed host
 
 -STATIC_URL = '/static/'
 +STATIC_URL = '/polls/static/'
 +STATIC_ROOT = '/root/dataMining/polls/static/'
+
+
 
 # Road Map
 ## Version
