@@ -6,31 +6,33 @@ This project is Zhe Liu's thesis of my bachelor's degree for Zhejiang University
 Any use without prior notice is not allowed.
 
 ## How to deploy this application
-### For running use docker locally:
+### Deploy locally with docker:
 0. Switch to `docker` branch
-1. install docker
-2. run `docker build -t data-mining .`
-3. run `docker-compose up -d --build` 
+1. Install docker
+2. Run `docker build -t data-mining .`
+3. Run `docker-compose up -d --build` 
 4. Go to `localhost:8000`, all done
 
-### For running on local desktop:
-0. using `master` branch
-1. install python3 first
-2. install all dependencies in `requirement.txt`
-3. type in `python manage.py runserver`
-4. You should be able to use this software in `localhost:8080` now
+
+### Configure Python environment locally:
+0. Using `master` branch
+1. Install python3 first
+2. Install all dependencies in `requirement.txt`
+3. Run `python manage.py runserver`
+4. Go to `localhost:8000`, all done
 
 
-### For running on server:
+### Deploy on server:
 0. Switch to `server` branch
-1. cofigure nginx `uwsgi --http :8000 --chdir /root/dataMining/ -w djangoData.wsgi`
-2. configure path and allowed host
+1. Configure nginx `uwsgi --http :8000 --chdir /root/dataMining/ -w djangoData.wsgi`
+2. Configure path and allowed host
 
 -STATIC_URL = '/static/'
 +STATIC_URL = '/polls/static/'
 +STATIC_ROOT = '/root/dataMining/polls/static/'
 
-
+3. Follow the same requirements as `Configure Python environment locally`
+4. Go to 'ServerIP:8000', all done
 
 # Road Map
 ## Version
