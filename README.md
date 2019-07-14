@@ -28,7 +28,7 @@ Any use without prior notice is not allowed.
 +STATIC_ROOT = '/root/dataMining/polls/static/'
 
 ### For running use docker locally:
-
+0. Switch to `docker` branch
 1. install docker
 2. run `docker build -t data-mining .`
 3. run `docker-compose up -d --build` 
