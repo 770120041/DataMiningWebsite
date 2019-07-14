@@ -15,7 +15,7 @@ Any use without prior notice is not allowed.
 
 
 ### Configure Python environment locally:
-0. Using `master` branch
+0. Clone `master` branch
 1. Install python3 first
 2. Install all dependencies in `requirement.txt`
 3. Run `python manage.py runserver`
@@ -23,7 +23,7 @@ Any use without prior notice is not allowed.
 
 
 ### Deploy on server:
-0. Switch to `server` branch
+0. Clone `server` branch
 1. Configure nginx `uwsgi --http :8000 --chdir /root/dataMining/ -w djangoData.wsgi`
 2. Configure path and allowed host
 
